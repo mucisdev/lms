@@ -43,32 +43,32 @@
 
         <div class="main">
 
-            <nav class="navbar navbar-expand navbar-light">
+            <nav class="navbar navbar-expand navbar-light sticky-top bg-white pb-4">
 
-                <div class="d-none d-sm-inline-block ml-3">
+                <div class="d-none d-md-inline-block ml-3">
                     <div class="input-group input-group-navbar">
-                        <label class="h4 m-0"><?= $title ?></label>
+                        <a onclick="link_to(`welcome`)" class="h3 m-0 text-decoration-none"><?= APP_TITLE ?></a>
                     </div>
                 </div>
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
                         <li class="nav-item dropdown">
-                            <span class="nav-link d-none d-sm-inline-block">
+                            <span class="nav-link d-none d-md-inline-block">
                                 <span class="me-2 text-dark"><strong>Anda belum masuk</strong></span>
                             </span>
 
-                            <span class="nav-link d-none d-sm-inline-block">
+                            <span class="nav-link d-none d-md-inline-block">
                                 <span class="me-2 text-dark">|</span>
                             </span>
 
-                            <a class="nav-link d-inline-block text-primary" href="<?= site_url('auth') ?>">Masuk</a>
+                            <a class="nav-link d-inline-block px-5 py-1 text-white btn btn-primary" href="<?= site_url('auth') ?>">Masuk</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <main class="content">
+            <main class="content pt-4">
                 <div class="container-fluid p-0">
                     <!-- Halaman loading -->
                     <div class="row" id="loading" style="display: none;">
@@ -92,7 +92,7 @@
             <footer class="footer border-0">
                 <div class="container-fluid">
                     <div class="row text-muted">
-                        <div class="col-12 text-start">
+                        <div class="col-12 text-center">
                             <p class="mb-0">
                                 &copy; 2021 by <?= DEV ?>
                             </p>
