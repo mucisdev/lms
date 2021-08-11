@@ -6,12 +6,10 @@ use CodeIgniter\Model;
 
 class M_matkul extends Model
 {
-    public function dataMatkulProdi($kode_prodi, $start, $limit)
+    public function dataMatkulKelas($id_kls, $smt, $id_smt)
     {
-        return $this->db->table('v_mk_kurikulum')
-            ->limit(10)
-            ->where('kode_prodi', $kode_prodi)
-            // ->getWhere(['kode_prodi' => $kode_prodi], 0, 10)
-            ->get()->getResult();
+        return $this->db->table('v_matkul_kelas')
+            ->where(['id_kls' => $id_kls, 'smt' => $smt, 'id_smt' => $id_smt])
+            ->get()->getResultArray();
     }
 }
