@@ -81,6 +81,6 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 // Author
 define('DEV', 'TIM IT MUCIS');
 define('CREATED_AT', '2021.08.09');
-define('UPDATED_AT', '2021.08.09');
+define('UPDATED_AT', '2021.08.12');
 define('APP_TITLE', 'Learning Mucis System');
 define('APP_INSTITUSI', 'STIKes Muhammadiyah Ciamis');
