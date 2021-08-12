@@ -92,7 +92,7 @@
                         <p class="mb-0"><i class="align-middle me-2 far fa-fw fa-user"></i> <?= $kls['jml_mhs'] ?> mahasiswa</p>
                     </div>
                     <hr>
-                    <a class="btn btn-primary" onclick="link_to(`<?= 'welcome/matkul/' . $kls['id_kls'] . '/' . enkrip_str($kls['smt']) ?>`)">Lihat Kelas <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
+                    <a class="btn btn-primary" onclick="link_to(`<?= 'welcome/matkul/' . $kls['id_kls'] . '/' . enkrip_str($kls['smt']) . '/' . enkrip_str($semester_aktif) ?>`)">Lihat Kelas <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
