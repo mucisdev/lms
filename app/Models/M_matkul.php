@@ -6,12 +6,14 @@ use CodeIgniter\Model;
 
 class M_matkul extends Model
 {
-    public function overviewMatkul($id_kls, $id_mk)
+    public function overviewMatkul($id_mk, $id_kls = null)
     {
-        return $this->db->table('v_overview_matkul')
-            ->orderBy('create_at', 'DESC')
-            ->where(['id_kls' => $id_kls, 'id_mk' => $id_mk])
-            ->get()->getRowArray();
+        $builder = $this->db->table('v_overview_matkul');
+        if (!empty($id_kls)) {
+            $builder->where('id_kls', $id_kls);
+        }
+        $builder->where('id_mk', $id_mk);
+        return $builder->get()->getRowArray();
     }
 
     public function dataMatkulKelas($id_kls, $smt, $id_smt)
