@@ -14,4 +14,13 @@ class M_mahasiswa extends Model
             ->where('siakad_reg_pd.nipd', $username)
             ->get()->getRowArray();
     }
+
+    public function dataMahasiswaKelas($id_kls)
+    {
+        return $this->db->table('v_mahasiswa_kelas')
+            ->select('nm_pd')
+            ->orderBy('nm_pd', 'ASC')
+            ->where('id_kls', $id_kls)
+            ->get()->getResultArray();
+    }
 }

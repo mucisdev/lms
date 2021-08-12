@@ -19,8 +19,9 @@
                     foreach ($prodi as $p) : ?>
                         <div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
                             <div class="card flex-fill">
+                                <img class="card-img-top" src="<?= base_url('assets/img/bg-prodi.jpg') ?>" alt="Cover Matkul">
                                 <div class="card-body py-4">
-                                    <div class="d-flex align-items-start mb-5">
+                                    <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
                                             <h3 class="mb-2"><?= $p['jenjang'] . ' ' . $p['nm_prodi'] ?></h3>
                                             <div class="mb-0">
@@ -28,7 +29,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a class="btn btn-primary" onclick="link_to(`<?= 'welcome/kelas/' . $p['kode_prodi'] ?>`)">Lihat Prodi <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-primary " onclick="link_to(`<?= 'welcome/kelas/' . enkrip_str($p['kode_prodi']) ?>`)">Lihat Prodi <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

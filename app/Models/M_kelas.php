@@ -15,4 +15,11 @@ class M_kelas extends Model
             ->where(['kode_prodi' => $kode_prodi, 'id_smt' => $id_smt])
             ->get()->getResultArray();
     }
+
+    public function overviewKelas($id_kls)
+    {
+        return $this->db->table('v_total_mk_kelas')
+            ->where(['id_kls' => $id_kls])
+            ->get()->getRowArray();
+    }
 }

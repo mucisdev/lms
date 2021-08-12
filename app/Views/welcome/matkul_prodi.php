@@ -1,59 +1,94 @@
 <?= $this->extend('template/welcome'); ?>
 <?= $this->section('content'); ?>
 
-<div class="row mb-2 mb-xl-3">
-    <div class="col-auto d-none d-sm-block">
-        <h3>Crypto</h3>
+<div class="row mb-3 mb-xl-3">
+    <div class="col-md-auto">
+        <h3>Overview</h3>
     </div>
 
-    <div class="col-auto ms-auto text-end mt-n1">
+    <div class="col-md-auto col-sm-12 ms-auto text-md-end mt-n1">
 
-        <div class="dropdown me-2 d-inline-block">
-            <a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar align-middle mt-n1">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg> Today
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-end">
-                <h6 class="dropdown-header">Settings</h6>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-            </div>
+        <div class="dropdown d-md-inline-block d-inline">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 my-2">
+                    <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="link_to(`welcome`)">Home</a></li>
+                    <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="link_to(`welcome/kelas/<?= enkrip_str($overview['kode_prodi']) ?>`)">Kelas</a></li>
+                    <li class="breadcrumb-item active"><?= $title ?></li>
+                </ol>
+            </nav>
         </div>
-
-        <button class="btn btn-primary shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter align-middle">
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-        </button>
-        <button class="btn btn-primary shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw align-middle">
-                <polyline points="23 4 23 10 17 10"></polyline>
-                <polyline points="1 20 1 14 7 14"></polyline>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-            </svg>
-        </button>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-12 col-xl-6">
+    <div class="col-12">
+        <div class="card" style="background-image: url('<?= base_url('assets/img/bg-profil.jpg') ?>');background-size:cover;min-height:100px;">
+            <div class="card-body py-4">
+                <p class="card-text text-light"><?= $overview['nm_smt']; ?></p>
+                <h2 class="text-white font-weight-bold d-flex align-items-center">
+                    KELAS <?= strtoupper($overview['nm_kls']); ?>
+                </h2>
+                <p class="card-text text-light mb-5">PROGRAM STUDI <?= strtoupper($overview['jenjang'] . ' ' . $overview['nm_prodi']); ?></p>
+                <div class="d-flex justify-content-start overflow-auto">
+                    <div class="me-5">
+                        <p class="card-text text-light mb-0">Total mata kuliah</p>
+                        <h4 class="text-light"><?= $overview['jml_mk'] ?></h4>
+                    </div>
+                    <div>
+                        <p class="card-text text-light mb-0">Total mahasiswa</p>
+                        <h4 class="text-light"><?= $overview['jml_mhs'] ?></h4>
+                    </div>
+                </div>
+                <hr>
+                <a class="btn btn-light" onclick="link_to(`welcome/kelas/<?= enkrip_str($overview['kode_prodi']) ?>`)"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-9">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Basic form</h5>
-                <h6 class="card-subtitle text-muted">Default Bootstrap form layout.</h6>
+            <div class="card-header px-4 pt-4">
+                <h5 class="card-title mb-0">Daftar Mata Kuliah</h5>
             </div>
             <div class="card-body">
-                <div id="load_data"></div>
-                <div id="load_data_message"></div>
+
+                <ol class="list-group list-group-flush list-group-numbered">
+                    <?php foreach ($data_matkul as $mk) : ?>
+                        <li role="button" onclick="link_to(`welcome/modul/<?= $mk['id_kls'] . '/' . $mk['id_mk'] ?>`)" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <div class="ms-md-2 me-auto">
+                                <div class="fw-bold text-primary"><?= strtoupper($mk['nm_mk']) ?></div>
+                            </div>
+                        </li>
+                    <?php endforeach ?>
+                </ol>
             </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        <div class="card">
+            <div class="card-header px-4 pt-4">
+                <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
+            </div>
+            <div class="card-body px-0">
+                <div class="overflow-auto" style="max-height:500px;">
+                    <div class="list-group list-group-flush">
+                        <?php foreach ($mahasiswa as $mhs) : ?>
+                            <div class="list-group-item border-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-inline-block text-truncate">
+                                        <div class="stat d-inline-block text-center me-2">
+                                            <i class="align-middle far fa-fw fa-user"></i>
+                                        </div> <?= strtoupper($mhs['nm_pd']) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

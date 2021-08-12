@@ -43,7 +43,7 @@
 
         <div class="main">
 
-            <nav class="navbar navbar-expand navbar-light sticky-top bg-white pb-4">
+            <nav class="navbar navbar-expand navbar-light sticky-top bg-white py-3 shadow">
 
                 <div class="d-none d-md-inline-block ml-3">
                     <div class="input-group input-group-navbar">
@@ -54,14 +54,6 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
                         <li class="nav-item dropdown">
-                            <span class="nav-link d-none d-md-inline-block">
-                                <span class="me-2 text-dark"><strong>Anda belum masuk</strong></span>
-                            </span>
-
-                            <span class="nav-link d-none d-md-inline-block">
-                                <span class="me-2 text-dark">|</span>
-                            </span>
-
                             <a class="nav-link d-inline-block px-5 py-1 text-white btn btn-primary" href="<?= site_url('auth') ?>">Masuk</a>
                         </li>
                     </ul>

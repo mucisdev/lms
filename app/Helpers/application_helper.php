@@ -214,7 +214,6 @@ if (!function_exists('dekrip_str')) {
 
 // ------------------------------------------------------------------------
 
-
 if (!function_exists('smt_aktif')) {
     /**
      * Semester aktif
@@ -227,5 +226,33 @@ if (!function_exists('smt_aktif')) {
         $m_smt = new M_semester();
         $smt_aktif = $m_smt->where(['tgl_mulai <= ' => $today, 'tgl_selesai >= ' => $today])->first();
         return $smt_aktif;
+    }
+}
+
+// ------------------------------------------------------------------------
+
+if (!function_exists('file_tipe')) {
+    /**
+     * File tipe
+     * 
+     * menentukan ikon sesuai jenis file
+     */
+    function file_tipe($ext)
+    {
+        $ext = strtolower($ext);
+        if ($ext == '.docx' or $ext == '.doc') :
+            $icon = 'align-middle fas fa-fw fa-file-word text-primary';
+        elseif ($ext == '.xls' or $ext == '.xlsx' or $ext == '.csv') :
+            $icon = 'align-middle fas fa-fw fa-file-excel text-success';
+        elseif ($ext == '.pdf') :
+            $icon = 'align-middle fas fa-fw fa-file-pdf text-danger';
+        elseif ($ext == '.ppt' or $ext == '.pptx') :
+            $icon = 'align-middle fas fa-fw fa-file-powerpoint text-warning';
+        elseif ($ext == '.jpg' || $ext == '.jpeg' || $ext == '.png') :
+            $icon = 'align-middle fas fa-fw fa-file-image text-primary';
+        else :
+            $icon = 'align-middle fas fa-fw fa-file';
+        endif;
+        return $icon;
     }
 }
