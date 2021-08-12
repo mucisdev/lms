@@ -33,9 +33,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Welcome::index');
 $routes->get('/welcome/kelas', 'Welcome::index');
-// $routes->get('/welcome/kelas/(:any)', 'Welcome::kelas/$1');
 $routes->get('/welcome/matkul', 'Welcome::index');
-// $routes->get('/welcome/matkul/(:any)', 'Welcome::matkul/$1');
+$routes->get('/welcome/modul', 'Welcome::index');
+$routes->get('/welcome/get_materi', 'Welcome::index');
+$routes->get('/welcome/get_materi/(:any)', 'Welcome::index');
+$routes->get('/welcome/get_tugas/(:any)', 'Welcome::index');
 
 
 /*
