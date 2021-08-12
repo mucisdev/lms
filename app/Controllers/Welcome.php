@@ -89,9 +89,18 @@ class Welcome extends BaseController
 
 	public function modul($id_kls = null, $id_mk = null)
 	{
+		$data_matkul = $this->matkul->overviewMatkul($id_mk, $id_kls);
+		// pengecekan
+		if ($data_matkul) :
+			// jika data ada, ambil data berdasarkan id_mk dan id_kls
+			$overview = $data_matkul;
+		else :
+			// jika data ada, ambil data HANYA berdasarkan id_mk
+			$overview = $this->matkul->overviewMatkul($id_mk);
+		endif;
 		$data = [
 			'title' => 'Daftar Modul Mata Kuliah',
-			'overview' => $this->matkul->overviewMatkul($id_kls, $id_mk), // info detail dari kelas yang dipilih
+			'overview' => $overview, // info detail dari matkul yang dipilih
 		];
 		return view('welcome/modul_matkul', $data);
 	}
