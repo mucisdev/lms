@@ -1,5 +1,5 @@
 window.addEventListener("load", materi());
-window.addEventListener("load", tugas());
+// window.addEventListener("load", tugas());
 async function materi() {
     const myData = { id_kls: id_kls, id_mk: id_mk, csrf_token_name: csrf_token };
     const options = {
@@ -22,9 +22,9 @@ async function materi() {
             result.forEach((data, i) =>  {
                 i++;
                 if (data.link) {
-                    html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div> ' + data.judul + '</li>';
+                    html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div> ' + data.judul.toUpperCase() + '</li>';
                 } else {
-                    html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle far fa-fw fa-lightbulb"></i></div>' + data.judul + '</li>';
+                    html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle far fa-fw fa-lightbulb"></i></div>' + data.judul.toUpperCase() + '</li>';
                 }
             });
         }else{
@@ -59,7 +59,7 @@ async function tugas() {
             const result = json.field;
             result.forEach((data, i) =>  {
                 i++;
-                html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle far fa-fw fa-lightbulb"></i></div>' + data.judul + '</li>';
+                html += '<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle far fa-fw fa-lightbulb"></i></div>' + data.judul.toUpperCase() + '</li>';
             });
         }else{
             html += 'Tidak ada tugas';
