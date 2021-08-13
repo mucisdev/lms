@@ -29,7 +29,7 @@ class Auth extends BaseController
 
     public function logout()
     {
-        $this->session->destroy();
+        session()->destroy();
         return redirect()->to(base_url('auth'));
     }
 }
