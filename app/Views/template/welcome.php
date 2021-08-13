@@ -98,7 +98,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/gh/wahyuos/style@73a1c411859ef15d22588da44581af53aa5a94f4/js/app.js" defer></script>
     <script src="/assets/js/global.js?v=<?= UPDATED_AT ?>" defer></script>
-    <script src="/assets/js/controller/welcome.js?v=<?= UPDATED_AT ?>" defer></script>
+    <script src="/assets/js/controller/welcome.js?v=<?= UPDATED_AT ?>" type="module" defer></script>
 </body>
 
 </html>
