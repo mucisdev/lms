@@ -10,7 +10,7 @@ if(document.getElementById('load-prodi')){
     window.addEventListener("DOMContentLoadedload", prodi());
 }
 
-// load data materi
+// ambil data materi
 import { materi } from './materi.js';
 if(document.getElementById('load-materi')){
     window.addEventListener("DOMContentLoadedload", materi());
