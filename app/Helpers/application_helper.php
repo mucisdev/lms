@@ -214,20 +214,20 @@ if (!function_exists('dekrip_str')) {
 
 // ------------------------------------------------------------------------
 
-if (!function_exists('smt_aktif')) {
-    /**
-     * Semester aktif
-     * 
-     * Untuk mengambil data semester aktif berdasarkan tanggal saat ini
-     */
-    function smt_aktif()
-    {
-        $today = date('Y-m-d');
-        $m_smt = new M_semester();
-        $smt_aktif = $m_smt->where(['tgl_mulai <= ' => $today, 'tgl_selesai >= ' => $today])->first();
-        return $smt_aktif;
-    }
-}
+// if (!function_exists('smt_aktif')) {
+//     /**
+//      * Semester aktif
+//      * 
+//      * Untuk mengambil data semester aktif berdasarkan tanggal saat ini
+//      */
+//     function smt_aktif()
+//     {
+//         $today = date('Y-m-d');
+//         $m_smt = new M_semester();
+//         $smt_aktif = $m_smt->where(['tgl_mulai <= ' => $today, 'tgl_selesai >= ' => $today])->first();
+//         return $smt_aktif;
+//     }
+// }
 
 // ------------------------------------------------------------------------
 
