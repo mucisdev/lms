@@ -18,26 +18,24 @@ async function prodi() {
             const result = json.field;
             result.forEach((data) =>  {
                 html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
-                <div class="card flex-fill">
-                    <img class="card-img-top" src="assets/img/bg-prodi.jpg" alt="Cover Matkul">
+                <div class="card flex-fill" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
                     <div class="card-body py-4">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2">${data.jenjang} ${data.nm_prodi}</h3>
+                                <h3 class="mb-2 text-white">${data.jenjang} ${data.nm_prodi}</h3>
                                 <div class="mb-0">
-                                    <span class="text-muted"><em>${data.nm_prodi_e}</em></span>
+                                    <span class="text-light"><em>${data.nm_prodi_e}</em></span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-primary" onclick="link_to('welcome/kelas/${data.kode_prodi}')">Lihat Prodi <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>`;
             });
         }else{
-            html += '<div class="col-12 text-center">Tidak ada program studi</div>';
+            html += `<div class="col-12 mx-auto pt-5 text-center">
+                <h1 class="text-center mb-5">${json.message}</h1>
+            </div>`;
         }
         document.getElementById('load-prodi').innerHTML = html;
     } catch (error) {
