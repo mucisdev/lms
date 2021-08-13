@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\M_semester;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -53,6 +54,7 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
-		// E.g.: $this->session = \Config\Services::session();
+		$this->semester = new M_semester();
+		$this->semester_aktif = $this->semester->getWhere(['tgl_mulai <= ' => date('Y-m-d'), 'tgl_selesai >= ' => date('Y-m-d')])->getRow();
 	}
 }
