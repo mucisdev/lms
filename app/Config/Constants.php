@@ -78,9 +78,19 @@ defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+/*
+|--------------------------------------------------------------------------
+| S3 Amazon Configuration
+|--------------------------------------------------------------------------
+*/
+defined('URL_CDN') or define('URL_CDN', 'https://drive.s3-id-jkt-1.kilatstorage.id');
+defined('CDN_BUCKET') or define('CDN_BUCKET', 'drive');
+defined('S3_SECRET_KEY') or define('S3_SECRET_KEY', '9v+42VWMG4ksSEDgZtyiVQqZ7ISv2pO0hXFdZokI');
+defined('S3_ACCESS_KEY') or define('S3_ACCESS_KEY', '69e2d63e543b705e3f1e');
+
 // Author
 define('DEV', 'TIM IT MUCIS');
 define('CREATED_AT', '2021.08.09');
-define('UPDATED_AT', '2021.08.12');
+define('UPDATED_AT', '2021.08.13');
 define('APP_TITLE', 'Learning Mucis System');
 define('APP_INSTITUSI', 'STIKes Muhammadiyah Ciamis');
