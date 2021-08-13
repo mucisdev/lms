@@ -13,34 +13,14 @@
     <div class="col-12">
         <div class="w-100">
 
-            <div class="row d-flex justify-content-center">
+            <div class="row d-flex justify-content-center" id="load-prodi">
 
-                <?php if ($prodi) :
-                    foreach ($prodi as $p) : ?>
-                        <div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
-                            <div class="card flex-fill">
-                                <img class="card-img-top" src="<?= base_url('assets/img/bg-prodi.jpg') ?>" alt="Cover Matkul">
-                                <div class="card-body py-4">
-                                    <div class="d-flex align-items-start">
-                                        <div class="flex-grow-1">
-                                            <h3 class="mb-2"><?= $p['jenjang'] . ' ' . $p['nm_prodi'] ?></h3>
-                                            <div class="mb-0">
-                                                <span class="text-muted"><em><?= $p['nm_prodi_e'] ?></em></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a class="btn btn-primary " onclick="link_to(`<?= 'welcome/kelas/' . enkrip_str($p['kode_prodi']) ?>`)">Lihat Prodi <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                <?php endforeach;
-                endif ?>
             </div>
 
         </div>
     </div>
 </div>
+
+<?= csrf_field('csrf_token') ?>
 
 <?= $this->endSection(); ?>

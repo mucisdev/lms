@@ -43,60 +43,18 @@
                 </div>
                 <hr>
                 <a class="btn btn-light" onclick="link_to(`welcome`)"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
+                <?= csrf_field('csrf_token') ?>
+                <input type="hidden" name="kode_prodi" id="kode_prodi" value="<?= service('uri')->getSegment(3) ?>">
             </div>
         </div>
     </div>
 </div>
 
 <div class="row mb-3 mb-xl-3">
-    <div class="col-md-auto">
-        <h3><?= $title ?></h3>
-    </div>
-
-    <div class="col-md-auto col-sm-12 ms-auto text-md-end mt-n1">
-
-        <div class="dropdown d-md-inline-block d-inline">
-            <div class="mb-0 row">
-                <label class="col-form-label col-sm-2 col-12 pt-2 text-sm-left" for="id_smt">Filter</label>
-                <div class="col-sm-10 col-12">
-                    <select name="id_smt" id="id_smt" class="form-select" onchange="link_to(`<?= 'welcome/kelas/' . enkrip_str($overview['kode_prodi']) . '/' ?>`+this.options[this.selectedIndex].value)" style="min-width: 200px;">
-                        <option selected disabled>Pilih semester</option>
-                        <?php if ($semester) :
-                            foreach ($semester as $smt) :
-                                $selected = ($smt['id_smt'] == $semester_aktif) ? 'selected' : '';
-                        ?>
-                                <option value="<?= enkrip_str($smt['id_smt']) ?>" <?= $selected ?>><?= $smt['nm_smt'] ?></option>
-                        <?php endforeach;
-                        endif ?>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h3><?= $title ?></h3>
 </div>
 
-<div class="row">
-    <?php foreach ($kelas as $kls) : ?>
-        <div class="col-md-6 col-xxl-3 d-flex">
-            <div class="card flex-fill">
-                <div class="card-header">
-                    <div class="d-md-flex align-items-center justify-content-between">
-                        <h3 class="mb-0"><?= $kls['nm_kls'] ?></h3>
-                        <p class="text-dark mb-0"><?= $kls['nm_smt'] ?></p>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="mb-0">
-                        <p class="mb-2"><i class="align-middle me-2 far fa-fw fa-calendar-check"></i> Semester <?= $kls['smt'] ?></p>
-                        <p class="mb-2"><i class="align-middle me-2 far fa-fw fa-clone"></i> <?= $kls['jml_mk'] ?> mata kuliah</p>
-                        <p class="mb-0"><i class="align-middle me-2 far fa-fw fa-user"></i> <?= $kls['jml_mhs'] ?> mahasiswa</p>
-                    </div>
-                    <hr>
-                    <a class="btn btn-primary" onclick="link_to(`<?= 'welcome/matkul/' . $kls['id_kls'] . '/' . enkrip_str($kls['smt']) . '/' . enkrip_str($semester_aktif) ?>`)">Lihat Kelas <i class="align-middle ms-2 fas fa-fw fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
+<div class="row" id="load-kelas">
 </div>
 
 <?= $this->endSection(); ?>

@@ -52,7 +52,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Materi</h5>
-                <h6 class="card-subtitle text-muted">Materi yang tersedia</h6>
+                <h6 class="card-subtitle text-muted">Klik pada nama materi untuk mendownload.</h6>
             </div>
             <div class="card-body">
                 <ol class="list-group list-group-flush" id="load-materi">
@@ -68,5 +68,7 @@
     <?php $uri = service('uri'); ?>
     var id_kls = '<?= $uri->getSegment(3) ?>';
     var id_mk = '<?= $uri->getSegment(4) ?>';
+    var link_cdn = '<?= URL_CDN . '/sidos/' ?>';
 </script>
+
 <?= $this->endSection(); ?>

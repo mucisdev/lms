@@ -40,7 +40,10 @@
                     </div>
                 </div>
                 <hr>
-                <a class="btn btn-light" onclick="link_to(`welcome/kelas/<?= enkrip_str($overview['kode_prodi']) ?>`)"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
+                <a class="btn btn-light" onclick="link_to(`welcome/kelas/<?= $overview['kode_prodi'] ?>`)"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
+                <?= csrf_field('csrf_token') ?>
+                <input type="hidden" name="id_kls" id="id_kls" value="<?= service('uri')->getSegment(3) ?>">
+                <input type="hidden" name="smt" id="smt" value="<?= service('uri')->getSegment(4) ?>">
             </div>
         </div>
     </div>
@@ -54,14 +57,7 @@
             </div>
             <div class="card-body">
 
-                <ol class="list-group list-group-flush list-group-numbered">
-                    <?php foreach ($data_matkul as $mk) : ?>
-                        <li role="button" onclick="link_to(`welcome/modul/<?= $mk['id_kls'] . '/' . $mk['id_mk'] ?>`)" class="list-group-item list-group-item-action d-flex align-items-center">
-                            <div class="ms-md-2 me-auto">
-                                <div class="fw-bold text-primary"><?= strtoupper($mk['nm_mk']) ?></div>
-                            </div>
-                        </li>
-                    <?php endforeach ?>
+                <ol class="list-group list-group-flush list-group-numbered" id="load-matkul">
                 </ol>
             </div>
         </div>
