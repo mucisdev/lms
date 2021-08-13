@@ -34,6 +34,7 @@
 
     <script>
         var site_url = '<?= site_url() ?>';
+        var title = '<?= $title ?>';
     </script>
 </head>
 
