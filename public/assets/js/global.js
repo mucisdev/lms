@@ -18,10 +18,43 @@ window.addEventListener("online", () => {
     }, 1500);
 });
 
+// loading spinner
+let loading_spinner = '<div class="col-12 d-flex justify-content-center"><div class="spinner-border text-primary mt-5" role="status"><span class="sr-only">Loading...</span></div></div>';
+
 // link href
 function link_to(url){
     location.href = site_url+url;
 }
+
+// cek extensi file
+function checkFileExtension(file_name) {
+    return file_name.split('.').pop();
+};
+
+// ikon file ekstensi
+function iconFileType(ekstensi)
+    {
+        let ekstension = ekstensi.toLowerCase();
+        if (ekstension == 'docx' || ekstension == 'doc') {
+            icon = '<i class="align-middle fas fa-fw fa-file-word text-primary"></i>';
+        }
+        else if (ekstension == 'xls' || ekstension == 'xlsx' || ekstension == 'csv') {
+            icon = '<i class="align-middle fas fa-fw fa-file-excel text-success"></i>';
+        }
+        else if (ekstension == 'pdf') {
+            icon = '<i class="align-middle fas fa-fw fa-file-pdf text-danger"></i>';
+        }
+        else if (ekstension == 'ppt' || ekstension == 'pptx') {
+            icon = '<i class="align-middle fas fa-fw fa-file-powerpoint text-warning"></i>';
+        }
+        else if (ekstension == 'jpg' || ekstension == 'jpeg' || ekstension == 'png') {
+            icon = '<i class="align-middle fas fa-fw fa-file-image text-primary"></i>';
+        }
+        else {
+            icon = '<i class="align-middle fas fa-fw fa-file"></i>';
+        }
+        return icon;
+    }
 
 // select2
 $(".select2").each(function () {
