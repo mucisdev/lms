@@ -33,8 +33,8 @@
     </noscript>
 
     <script>
-        var site_url = '<?= site_url() ?>';
-        var title = '<?= $title ?>';
+        let site_url = '<?= site_url() ?>';
+        let title = '<?= $title ?>';
     </script>
 </head>
 
