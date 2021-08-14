@@ -2,15 +2,18 @@
 <?= $this->section('content'); ?>
 
 <div class="row m-0 p-0">
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-3 mx-auto p-0 pt-md-5">
+    <div class="col-sm-8 col-md-6 col-lg-4 mx-auto p-0 pt-md-4">
         <div class="card shadow-none">
             <div class="card-body">
-                <div class="m-4">
+                <div class="m-0 m-md-4">
                     <div class="text-center mb-4">
-                        <div class="text-center mb-2">
+                        <div class="text-center mb-3">
                             <img src="/assets/img/icon.png" alt="Logo" width="100" height="auto" class="rounded">
                         </div>
-                        <h3 class="text-dark font-weight-bold mb-0">Silahkan Login</h3>
+                        <h1 class="h2">Halaman Login</h1>
+                        <p class="lead">
+                            Silahkan login untuk masuk sistem
+                        </p>
                     </div>
                     <hr>
                     <form autocomplete="off" class="formInput">

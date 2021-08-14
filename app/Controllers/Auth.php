@@ -3,16 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\M_auth;
-use App\Models\M_mahasiswa;
 
 class Auth extends BaseController
 {
     protected $auth;
-    protected $mahasiswa;
     public function __construct()
     {
         $this->auth = new M_auth();
-        $this->mahasiswa = new M_mahasiswa();
     }
 
     public function index()
@@ -25,6 +22,59 @@ class Auth extends BaseController
 
     public function login()
     {
+        // data yang diterima
+        $username = trim($this->request->getPost('username'));
+        $password = trim($this->request->getPost('password'));
+
+        // ambil data user berdasarkan username
+        $dataUser = $this->auth->getUser($username);
+        // jika ada, lakukan verifikasi
+        if ($dataUser) {
+            // mencocokan password
+            if (password_verify($password, $dataUser['password'])) {
+                // jika password cocok, ambil data
+                // periksa level akun
+                if ($dataUser['role'] == 'Mahasiswa') {
+                    $akun = [
+                        'username' => $dataUser['username'],
+                        'nama_user' => $dataUser['nama'],
+                        'id_reg' => $dataUser['id_reg'],
+                        'role' => $dataUser['role'],
+                    ];
+                } else {
+                    $akun = [
+                        'username' => $dataUser['username'],
+                        'nama_user' => $dataUser['nama'],
+                        'id_reg' => $dataUser['id_reg'],
+                        'role' => $dataUser['role'],
+                    ];
+                }
+                // buat session
+                session()->set([
+                    'nama_user' => $akun['nama_user'],
+                    'username' => $akun['username'],
+                    'id_reg' => $akun['id_reg'],
+                    'level' => $akun['role'],
+                    'logged_in' => true
+                ]);
+                // respon berhasil login
+                $response = response(true, 'Berhasil login!');
+                // kirim level akun
+                // untuk mengatur arah redirect
+                $response['role'] = $dataUser['role'];
+            } else {
+                // respon password salah
+                $response = response(false, 'Password salah!');
+            }
+        } else {
+            // respon data tidak ditemukan
+            $response = response(false, 'Akun tidak ditemukan!');
+        }
+
+        // kirim nilai csrf yang terbaru
+        $response['csrf_token'] = csrf_hash();
+        // return $response dalam bentuk json
+        return $this->response->setJSON($response);
     }
 
     public function logout()
