@@ -1,10 +1,3 @@
-// show loading saat load
-// window.addEventListener("beforeunload", function (e) {
-    // document.getElementById('loading').style.display = "block";
-    // document.getElementById('isi_konten').style.display = "none";
-    // document.getElementById('load-prodi').innerHTML = loading_spinner;
-// }, false);
-
 // offline
 window.addEventListener("offline", () => {
     document.getElementById('offline').style.display = "block";
@@ -81,6 +74,61 @@ function tanggal_indo(tanggal_sql) {
     let tanggal_indo = data_array.join('-');
     // kembalikan nilai ke bentuk dd-mm-yyyy
     return tanggal_indo;
+}
+
+let formInput = document.querySelector('.formInput');
+if (formInput) {
+    var btnSubmit = document.querySelector('.btnSubmit');
+    var btnReset = document.querySelector('.btnReset');
+
+    // disable submit saat input masih kosong
+    function submitDisabled() {
+        let inputs = [...formInput.querySelectorAll('.required')];
+        let isIncomplete = inputs.some(input => !input.value);
+        btnSubmit.disabled = isIncomplete;
+        btnReset.disabled = isIncomplete;
+        btnSubmit.style.cursor = isIncomplete ? 'not-allowed' : 'pointer';
+        btnReset.style.cursor = isIncomplete ? 'not-allowed' : 'pointer';
+        btnSubmit.classList.remove("progress-bar-striped");
+        btnSubmit.classList.remove("progress-bar-animated");
+
+    }
+    formInput.addEventListener('input', submitDisabled);
+    submitDisabled();
+
+    // merubah status tombol submit ketika di klik
+    function btnSubmitClick(status = false, addClass = false, text = 'SIMPAN') {
+        btnSubmit.disabled = status;
+        btnSubmit.textContent = text;
+        // jika true, maka tambahkan class pada tombol submit
+        if (addClass) {
+            btnSubmit.classList.add("progress-bar-striped");
+            btnSubmit.classList.add("progress-bar-animated");
+        } else {
+            btnSubmit.classList.remove("progress-bar-striped");
+            btnSubmit.classList.remove("progress-bar-animated");
+        }
+    }
+}
+
+// readOnly textfield form
+function disableForm(status = false) {
+    let inputs = document.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = status;
+    }
+    let selects = document.getElementsByTagName("select");
+    for (let i = 0; i < selects.length; i++) {
+        selects[i].disabled = status;
+    }
+    let textareas = document.getElementsByTagName("textarea");
+    for (let i = 0; i < textareas.length; i++) {
+        textareas[i].disabled = status;
+    }
+    let buttons = document.getElementsByTagName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = status;
+    }
 }
 
 // notif
