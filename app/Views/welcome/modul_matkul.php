@@ -7,9 +7,10 @@
 <?= csrf_field('csrf_token') ?>
 
 <script>
-    var id_kls = '<?= $id_kls ?>';
-    var id_mk = '<?= $id_mk ?>';
-    var link_cdn = '<?= URL_CDN . '/sidos/' ?>';
+    let id_kls = '<?= $id_kls ?>';
+    let id_mk = '<?= $id_mk ?>';
+    let link_cdn = '<?= URL_CDN . '/sidos/' ?>';
+    let csrf_token = '<?= csrf_hash() ?>';
 </script>
 
 <?= $this->endSection(); ?>

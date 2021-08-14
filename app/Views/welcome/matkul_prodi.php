@@ -3,11 +3,10 @@
 
 <div id="load-matkul"></div>
 
-<?= csrf_field('csrf_token') ?>
-
 <script>
-    var id_kls = '<?= $id_kls ?>';
-    var smt = '<?= $smt ?>';
+    let id_kls = '<?= $id_kls ?>';
+    let smt = '<?= $smt ?>';
+    let csrf_token = '<?= csrf_hash() ?>';
 </script>
 
 <?= $this->endSection(); ?>

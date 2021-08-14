@@ -3,9 +3,9 @@
 
 <div id="load-kelas"></div>
 
-<?= csrf_field('csrf_token') ?>
 <script>
-    var kode_prodi = '<?= $kode_prodi ?>';
+    let kode_prodi = '<?= $kode_prodi ?>';
+    let csrf_token = '<?= csrf_hash() ?>';
 </script>
 
 <?= $this->endSection(); ?>
