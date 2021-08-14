@@ -37,7 +37,7 @@
     </script>
 </head>
 
-<body data-theme="default" class="bg-light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+<body data-theme="default" class="bg-white" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 
     <?=
     //konten
