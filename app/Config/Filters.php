@@ -32,7 +32,7 @@ class Filters extends BaseConfig
 	public $globals = [
 		'before' => [
 			'csrf',
-			'cek_login' => ['except' => ['/', 'auth', 'auth/*', 'welcome', 'welcome/*']],
+			'cek_login' => ['except' => ['/', 'auth', 'auth/*', 'welcome', 'welcome/*', 'getdata', 'getdata/*']],
 			// 'honeypot',
 		],
 		'after'  => [
