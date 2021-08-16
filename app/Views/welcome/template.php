@@ -54,9 +54,29 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-inline-block px-5 py-1 text-white btn btn-primary" href="<?= site_url('auth') ?>">Masuk</a>
-                        </li>
+                        <?php if (session()->get('logged_in')) : ?>
+                            <span class="nav-icon d-inline-block d-sm-none">
+                                <i class="align-middle" data-feather="user"></i>
+                            </span>
+
+                            <a class="nav-icon d-inline-block d-sm-none" href="<?= site_url('auth/logout') ?>">
+                                <i class="align-middle" data-feather="power"></i>
+                            </a>
+
+                            <span class="nav-link d-none d-sm-inline-block">
+                                <span class="me-2 fw-bold text-dark"><?= ucwords(strtolower(session()->get('nama_user'))) ?></span>
+                            </span>
+
+                            <span class="nav-link d-none d-sm-inline-block">
+                                <span class="me-2 text-dark">|</span>
+                            </span>
+
+                            <a class="nav-link d-none d-sm-inline-block text-danger" href="<?= site_url('auth/logout') ?>">Logout</a>
+                        <?php else : ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-inline-block px-5 py-1 text-white btn btn-primary" href="<?= site_url('auth') ?>">Masuk</a>
+                            </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </nav>
