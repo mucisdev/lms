@@ -6,12 +6,10 @@ use CodeIgniter\Model;
 
 class M_mahasiswa extends Model
 {
-    public function dataMahasiswa($username)
+    public function dataMahasiswa($username, $id_smt)
     {
-        return $this->db->table('siakad_reg_pd')
-            ->select('id_reg_pd, nm_pd nipd, kode_prodi, id_prodi')
-            ->join('siakad_pd', 'siakad_pd.id_pd = siakad_reg_pd.id_pd', 'LEFT JOIN')
-            ->where('siakad_reg_pd.nipd', $username)
+        return $this->db->table('v_mahasiswa_aktif')
+            ->where(['nipd' => $username, 'id_smt' => $id_smt])
             ->get()->getRowArray();
     }
 
