@@ -3,6 +3,7 @@
 use App\Models\M_semester;
 use Config\Services;
 
+
 // ------------------------------------------------------------------------
 
 if (!function_exists('controller_name')) {
@@ -14,12 +15,28 @@ if (!function_exists('controller_name')) {
      */
     function controller_name()
     {
-        // $router = service('router');
-        // $controller = $router->controllerName();
-        // $nama_controller = explode("\\", $controller);
-        // return end($nama_controller);
-        $request = Services::request();
-        return $request->uri->getSegment(1);
+        $router = service('router');
+        $controller = $router->controllerName();
+        $nama_controller = explode("\\", $controller);
+        return strtolower(end($nama_controller));
+        // $request = Services::request();
+        // return $request->uri->getSegment(1);
+    }
+}
+
+// ------------------------------------------------------------------------
+
+if (!function_exists('method_name')) {
+    /**
+     * Mengambil nama controller
+     * 
+     *  @author Wahyu Kamaludin
+     *  @return string Nama controller yang sedang diakses
+     */
+    function method_name()
+    {
+        $router = service('router');
+        return $router->methodName();
     }
 }
 
@@ -140,97 +157,6 @@ if (!function_exists('arr_trim')) {
 
 // ------------------------------------------------------------------------
 
-if (!function_exists('enkrip_str')) {
-    /**
-     * Enkripsi String
-     *
-     * Mengenkripsi string dengan openssl_encrypt() dari PHP
-     * @author Wahyu Kamaludin
-     * @param   string string yang akan dienkripsi
-     * @return	string string yang sudah dienkripsi
-     */
-    function enkrip_str(string $plainteks = null)
-    {
-        // Store the cipher method
-        $ciphering = "AES-128-CTR";
-        $options = 0;
-
-        // Non-NULL Initialization Vector for encryption
-        $encryption_iv = '1111222233334444';
-
-        // Store the encryption key
-        $encryption_key = "wahyuos";
-
-        // Use openssl_encrypt() function to encrypt the data
-        $encryption_str = openssl_encrypt(
-            $plainteks,
-            $ciphering,
-            $encryption_key,
-            $options,
-            $encryption_iv
-        );
-
-        return $encryption_str;
-    }
-}
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('dekrip_str')) {
-    /**
-     * Enkripsi String
-     *
-     * Mengenkripsi string dengan openssl_encrypt() dari PHP
-     * @author Wahyu Kamaludin
-     * @param   string string yang akan dienkripsi
-     * @return	string string yang sudah dienkripsi
-     */
-    function dekrip_str(string $encryption_str = null)
-    {
-        // Decryption of string process starts
-
-        // Store the cipher method
-        $ciphering = "AES-128-CTR";
-        $options = 0;
-
-        // Non-NULL Initialization Vector for encryption
-        $decryption_iv = '1111222233334444';
-
-        // Store the encryption key
-        $decryption_key = "wahyuos";
-
-        // Descrypt the string
-        $decryption_str = openssl_decrypt(
-            $encryption_str,
-            $ciphering,
-            $decryption_key,
-            $options,
-            $decryption_iv
-        );
-
-        return $decryption_str;
-    }
-}
-
-// ------------------------------------------------------------------------
-
-// if (!function_exists('smt_aktif')) {
-//     /**
-//      * Semester aktif
-//      * 
-//      * Untuk mengambil data semester aktif berdasarkan tanggal saat ini
-//      */
-//     function smt_aktif()
-//     {
-//         $today = date('Y-m-d');
-//         $m_smt = new M_semester();
-//         $smt_aktif = $m_smt->where(['tgl_mulai <= ' => $today, 'tgl_selesai >= ' => $today])->first();
-//         return $smt_aktif;
-//     }
-// }
-
-// ------------------------------------------------------------------------
-
 if (!function_exists('file_tipe')) {
     /**
      * File tipe
@@ -254,5 +180,31 @@ if (!function_exists('file_tipe')) {
             $icon = 'align-middle fas fa-fw fa-file';
         endif;
         return $icon;
+    }
+}
+
+// ------------------------------------------------------------------------
+
+if (!function_exists('time_stamp')) {
+    function time_stamp($timestamp)
+    {
+        $awal = date_create($timestamp);
+        $akhir = date_create();
+        $diff = date_diff($awal, $akhir, true);
+        if ($diff->y > 0) {
+            $teks = $diff->y . ' tahun yang lalu';
+        } else if ($diff->m > 0) {
+            $teks = $diff->m . ' bulan yang lalu ';
+        } else if ($diff->d > 0) {
+            $teks = $diff->d . ' hari yang lalu';
+        } else if ($diff->h > 0) {
+            $teks = $diff->h . ' jam yang lalu';
+        } else if ($diff->i > 0) {
+            $teks = $diff->i . ' menit yang lalu';
+        } else {
+            $teks = 'Baru saja';
+        }
+
+        return $teks;
     }
 }
