@@ -39,6 +39,7 @@ class Auth extends BaseController
                         'username' => $dataUser['username'],
                         'nama_user' => $dataUser['nama'],
                         'id_reg' => $dataUser['id_reg'],
+                        'id_akun' => $dataUser['id_akun'],
                         'role' => $dataUser['role'],
                     ];
                 } else {
@@ -46,6 +47,7 @@ class Auth extends BaseController
                         'username' => $dataUser['username'],
                         'nama_user' => $dataUser['nama'],
                         'id_reg' => $dataUser['id_reg'],
+                        'id_akun' => $dataUser['id_akun'],
                         'role' => $dataUser['role'],
                     ];
                 }
@@ -54,7 +56,9 @@ class Auth extends BaseController
                     'nama_user' => $akun['nama_user'],
                     'username' => $akun['username'],
                     'id_reg' => $akun['id_reg'],
+                    'id_akun' => $akun['id_akun'],
                     'level' => $akun['role'],
+                    'id_smt' => $this->semester_aktif->id_smt,
                     'logged_in' => true
                 ]);
                 // respon berhasil login
