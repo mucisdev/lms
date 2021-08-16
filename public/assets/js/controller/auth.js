@@ -23,9 +23,9 @@ async function sendData(value) {
             notif(json.message, json.type);
             // periksa level
             if (json.role == 'Mahasiswa') {
-                location.href = site_url + 'pelajar/home';
+                location.href = site_url + 'pelajar';
             } else {
-                location.href = site_url + 'pengajar/home';
+                location.href = site_url + 'pengajar';
             }
         } else {
             disableForm(false);
