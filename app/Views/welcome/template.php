@@ -63,15 +63,6 @@
 
             <main class="content pt-4">
                 <div class="container-fluid p-0">
-                    <!-- Halaman loading -->
-                    <div class="row" id="loading" style="display: none;">
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <div class="spinner-border text-primary my-3" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                            <p id="ket_loading">Memuat halaman...</p>
-                        </div>
-                    </div>
 
                     <div id="isi_konten">
                         <?=
