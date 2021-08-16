@@ -75,15 +75,19 @@ async function materi() {
                         </div>
                         <div class="card-body">
                             <ol class="list-group list-group-flush">`;
-            const result = json.field;
-            result.forEach((data) =>  {
-                let file_type = (data.file) ? checkFileExtension(data.file) : '';
-                if (data.link) {
-                    html += `<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>${data.judul.toUpperCase()}</li>`;
-                } else {
-                    html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}" class="list-group-item list-group-item-action fw-bold text-primary d-flex align-items-center"><div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>${data.judul.toUpperCase()}</a>`;
-                }
-            });
+                    const result_materi = json.materi;
+                    if(result_materi.length) {
+                        result_materi.forEach((data) =>  {
+                            let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                            if (data.link) {
+                                html += `<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>${data.judul.toUpperCase()}</li>`;
+                            } else {
+                                html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}" class="list-group-item list-group-item-action fw-bold text-primary d-flex align-items-center"><div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>${data.judul.toUpperCase()}</a>`;
+                            }
+                        });
+                    }else{
+                        html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
+                    }
                     html+= `</ol>
                         </div>
                     </div>
