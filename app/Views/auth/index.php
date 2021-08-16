@@ -8,10 +8,10 @@
                 <div class="m-0 m-md-4">
                     <div class="text-center mb-4">
                         <div class="text-center mb-3">
-                            <img src="/assets/img/icon.png" alt="Logo" width="100" height="auto" class="rounded">
+                            <img src="/assets/img/icon.png" alt="Logo" width="40%" height="auto" class="img-fluid rounded-circle">
                         </div>
                         <h1 class="h2">Halaman Login</h1>
-                        <p class="lead">
+                        <p>
                             Silahkan login untuk masuk sistem
                         </p>
                     </div>
@@ -19,12 +19,10 @@
                     <form autocomplete="off" class="formInput">
                         <?= csrf_field('csrf_token'); ?>
                         <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
-                            <input class="form-control form-control-lg required" type="username" name="username" id="username" placeholder="Enter your username" autofocus required />
+                            <input class="form-control required" type="username" name="username" id="username" placeholder="Enter your username" autofocus required />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="my_password">Password</label>
-                            <input class="form-control form-control-lg required" type="password" name="password" id="my_password" placeholder="Enter your password" required />
+                            <input class="form-control required" type="password" name="password" id="my_password" placeholder="Enter your password" required />
                         </div>
                         <div>
                             <div class="form-check align-items-center">
