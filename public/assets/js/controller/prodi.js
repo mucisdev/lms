@@ -11,14 +11,14 @@ async function prodi() {
         // tampilkan loader
         document.getElementById('load-prodi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'welcome/get_prodi/', options);
+        const response = await fetch(site_url+'getdata/get_prodi/', options);
         const json = await response.json();
         let html = '';
         if(json.status){
             const result = json.field;
             result.forEach((data) =>  {
                 html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
-                <div class="card flex-fill" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
+                <div class="card flex-fill bg-primary" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
                     <div class="card-body py-4">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">

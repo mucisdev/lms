@@ -11,7 +11,7 @@ async function kelas() {
         // tampilkan loader
         document.getElementById('load-kelas').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'welcome/get_kelas/', options);
+        const response = await fetch(site_url+'getdata/get_kelas/', options);
         const json = await response.json();
         let html = '';
         if(json.status){

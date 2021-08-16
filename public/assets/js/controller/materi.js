@@ -11,7 +11,7 @@ async function materi() {
         // tampilkan loader
         document.getElementById('load-materi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'welcome/get_materi/', options);
+        const response = await fetch(site_url+'getdata/get_materi/', options);
         const json = await response.json();
         let html = '';
         if(json.status){

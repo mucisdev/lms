@@ -11,7 +11,7 @@ async function matkul() {
         // tampilkan loader
         document.getElementById('load-matkul').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'welcome/get_matkul/', options);
+        const response = await fetch(site_url+'getdata/get_matkul/', options);
         const json = await response.json();
         let html = '';
         if(json.status){
