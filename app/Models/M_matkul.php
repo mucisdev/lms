@@ -41,9 +41,21 @@ class M_matkul extends Model
 
     public function listTugasMatkul($id_kls, $id_mk)
     {
+        $today = ('Y-m-d');
         return $this->db->table('v_modul_matkul')
             ->orderBy('create_at', 'DESC')
+            // ->where(['id_kls' => $id_kls, 'id_mk' => $id_mk, 'jenis' => 'Tugas', 'tgl_akhir <= ' => $today])
             ->where(['id_kls' => $id_kls, 'id_mk' => $id_mk, 'jenis' => 'Tugas'])
             ->get()->getResultArray();
+    }
+
+    public function tugasMatkul($id_classwork)
+    {
+        $today = ('Y-m-d');
+        return $this->db->table('v_modul_matkul')
+            ->orderBy('create_at', 'DESC')
+            // ->where(['id_classwork' => $id_classwork, 'tgl_akhir <= ' => $today])
+            ->where(['id_classwork' => $id_classwork])
+            ->get()->getRowArray();
     }
 }
