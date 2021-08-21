@@ -189,6 +189,25 @@ class GetData extends BaseController
 		return $this->response->setJSON($response);
 	}
 
+	public function get_tugas_saya()
+	{
+		if ($this->request->getVar()) {
+			$params = [
+				'id_classwork' => $this->request->getVar('id_classwork'),
+				'id_reg_pd' => $this->request->getVar('id_reg_pd'),
+			];
+			$tugas_saya = $this->matkul->tugasMahasiswa($params);
+			if ($tugas_saya) {
+				$response = response(true, 'Data ditemukan!');
+				$response['tugas_saya'] = $tugas_saya; // data tugas
+			} else {
+				$response = response(false, 'Tidak ada tugas!');
+			}
+		} else {
+			$response = response(false, 'Tidak ada data yang diterima!');
+		}
+	}
+
 	public function get_info()
 	{
 		if ($this->request->getVar()) {
