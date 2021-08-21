@@ -27,7 +27,7 @@ class Auth extends BaseController
         $password = trim($this->request->getPost('password'));
 
         // ambil data user berdasarkan username
-        $dataUser = $this->auth->getUser($username);
+        $dataUser = $this->auth->getUserDumy($username);
         // jika ada, lakukan verifikasi
         if ($dataUser) {
             // mencocokan password
@@ -38,7 +38,7 @@ class Auth extends BaseController
                     $akun = [
                         'username' => $dataUser['username'],
                         'nama_user' => $dataUser['nama'],
-                        'id_reg' => $dataUser['id_reg'],
+                        // 'id_reg' => $dataUser['id_reg'],
                         'id_akun' => $dataUser['id_akun'],
                         'role' => $dataUser['role'],
                     ];
@@ -46,7 +46,7 @@ class Auth extends BaseController
                     $akun = [
                         'username' => $dataUser['username'],
                         'nama_user' => $dataUser['nama'],
-                        'id_reg' => $dataUser['id_reg'],
+                        // 'id_reg' => $dataUser['id_reg'],
                         'id_akun' => $dataUser['id_akun'],
                         'role' => $dataUser['role'],
                     ];
@@ -55,7 +55,7 @@ class Auth extends BaseController
                 session()->set([
                     'nama_user' => $akun['nama_user'],
                     'username' => $akun['username'],
-                    'id_reg' => $akun['id_reg'],
+                    // 'id_reg' => $akun['id_reg'],
                     'id_akun' => $akun['id_akun'],
                     'level' => $akun['role'],
                     'id_smt' => $this->semester_aktif->id_smt,

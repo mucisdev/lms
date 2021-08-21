@@ -11,4 +11,9 @@ class M_auth extends Model
     {
         return $this->db->table('v_akun')->getWhere(['username' => $username])->getRowArray();
     }
+
+    public function getUserDumy($username)
+    {
+        return $this->db->table('learning_akun_dumy')->getWhere(['username' => $username])->getRowArray();
+    }
 }
