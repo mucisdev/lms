@@ -58,4 +58,12 @@ class M_matkul extends Model
             ->where(['id_classwork' => $id_classwork])
             ->get()->getRowArray();
     }
+
+    public function tugasMahasiswa($params)
+    {
+        return $this->db->table('learning_task')
+            ->orderBy('create_at', 'DESC')
+            ->where($params)
+            ->get()->getResultArray();
+    }
 }
