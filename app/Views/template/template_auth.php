@@ -37,7 +37,7 @@
     </script>
 </head>
 
-<body data-theme="default" class="bg-white" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+<body data-theme="default" class="bg-white" style="background-image: url(<?= base_url('assets/img/bg-pattern-light.svg') ?>);background-size: cover;background-position: center;background-attachment: fixed;" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 
     <?=
     //konten
