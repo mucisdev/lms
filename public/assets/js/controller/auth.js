@@ -21,12 +21,13 @@ async function sendData(value) {
             btnSubmit.disabled = true;
             // jika status true, alihkan ke home
             notif(json.message, json.type);
+            location.href = site_url;
             // periksa level
-            if (json.role == 'Mahasiswa') {
-                location.href = site_url + 'pelajar';
-            } else {
-                location.href = site_url + 'pengajar';
-            }
+            // if (json.role == 'Mahasiswa') {
+            //     location.href = site_url + 'pelajar';
+            // } else {
+            //     location.href = site_url + 'pengajar';
+            // }
         } else {
             disableForm(false);
             // set csrf
