@@ -38,7 +38,7 @@
     </script>
 </head>
 
-<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+<body data-theme="light" style="background-image: url(<?= base_url('assets/img/bg-pattern-light.svg') ?>);background-size: cover;background-position: center;background-attachment: fixed;" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 
     <div class="wrapper">
 
