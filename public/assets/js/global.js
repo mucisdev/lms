@@ -131,6 +131,56 @@ function disableForm(status = false) {
     }
 }
 
+// format tanggal
+function format_tanggal(tgl_asal, ket = 'f'){
+    let date = new Date(tgl_asal);
+    let hari = date.getDay();
+    let tanggal = date.getDate();
+    let bulan = date.getMonth();
+    let tahun = date.getFullYear();
+    let jam = date.getHours();
+    let menit = date.getMinutes();
+    let detik = date.getSeconds();
+
+    // hari
+    switch(hari) {
+        case 0: hari = "Minggu"; break;
+        case 1: hari = "Senin"; break;
+        case 2: hari = "Selasa"; break;
+        case 3: hari = "Rabu"; break;
+        case 4: hari = "Kamis"; break;
+        case 5: hari = "Jum'at"; break;
+        case 6: hari = "Sabtu"; break;
+    }
+
+    // bulan
+    switch(bulan) {
+        case 0: bulan = "Januari"; break;
+        case 1: bulan = "Februari"; break;
+        case 2: bulan = "Maret"; break;
+        case 3: bulan = "April"; break;
+        case 4: bulan = "Mei"; break;
+        case 5: bulan = "Juni"; break;
+        case 6: bulan = "Juli"; break;
+        case 7: bulan = "Agustus"; break;
+        case 8: bulan = "September"; break;
+        case 9: bulan = "Oktober"; break;
+        case 10: bulan = "November"; break;
+        case 11: bulan = "Desember"; break;
+    }
+
+    let tampilTanggal = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+    let tampilWaktu = `${jam}:${menit}:${detik}`; 
+
+    switch(ket){
+        case 'f' : format_tgl = `${tampilTanggal} ${tampilWaktu}`; break;
+        case 't' : format_tgl = `${tampilTanggal}`; break;
+        case 'w' : format_tgl = `${tampilWaktu}`; break;
+    }
+
+    return format_tgl;
+}
+
 // notif
 function notif(pesan, tipe, timer = 5000) {
     const message = pesan;
