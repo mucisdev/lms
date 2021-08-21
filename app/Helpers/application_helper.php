@@ -163,9 +163,11 @@ if (!function_exists('file_tipe')) {
      * 
      * menentukan ikon sesuai jenis file
      */
-    function file_tipe($ext)
+    function file_tipe($file)
     {
-        $ext = strtolower($ext);
+        $path_parts = pathinfo($file);
+        $ext = '.' . $path_parts['extension'];
+        // $ext = strtolower($ext);
         if ($ext == '.docx' or $ext == '.doc') :
             $icon = 'align-middle fas fa-fw fa-file-word text-primary';
         elseif ($ext == '.xls' or $ext == '.xlsx' or $ext == '.csv') :
