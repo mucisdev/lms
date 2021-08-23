@@ -54,7 +54,10 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
+
+		// mengambil data semester
 		$this->semester = new M_semester();
 		$this->semester_aktif = $this->semester->getWhere(['tgl_mulai <= ' => date('Y-m-d'), 'tgl_selesai >= ' => date('Y-m-d')])->getRow();
+		$this->smt_aktif = (session()->get('logged_in')) ? session()->get('id_smt') : $this->semester_aktif->id_smt;
 	}
 }
