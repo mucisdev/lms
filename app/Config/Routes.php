@@ -35,17 +35,10 @@ $routes->get('/', 'Welcome::index');
 $routes->get('/auth/login', 'Auth::index');
 $routes->get('/getdata', 'Auth::index');
 $routes->get('/getdata/(:any)', 'Auth::index');
+$routes->get('/welcome/semester', 'Auth::index');
 $routes->get('/welcome/kelas', 'Welcome::index');
 $routes->get('/welcome/matkul', 'Welcome::index');
 $routes->get('/welcome/modul', 'Welcome::index');
-$routes->get('/welcome/get_prodi', 'Welcome::index');
-$routes->get('/welcome/get_prodi/(:any)', 'Welcome::index');
-$routes->get('/welcome/get_kelas', 'Welcome::index');
-$routes->get('/welcome/get_kelas/(:any)', 'Welcome::index');
-$routes->get('/welcome/get_matkul', 'Welcome::index');
-$routes->get('/welcome/get_matkul/(:any)', 'Welcome::index');
-$routes->get('/welcome/get_materi', 'Welcome::index');
-$routes->get('/welcome/get_materi/(:any)', 'Welcome::index');
 
 
 /*
