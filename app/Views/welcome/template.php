@@ -52,6 +52,14 @@
                     </div>
                 </div>
 
+                <?php if (session()->get('logged_in')) : ?>
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2 dropdown">
+                            <a class="nav-link dropdown-toggle" onclick="link_to(`welcome/semester`)"><?= session()->get('nm_smt') ?></a>
+                        </li>
+                    </ul>
+                <?php endif ?>
+
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
                         <?php if (session()->get('logged_in')) : ?>
