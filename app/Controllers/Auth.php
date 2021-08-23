@@ -59,6 +59,7 @@ class Auth extends BaseController
                     'id_akun' => $akun['id_akun'],
                     'level' => $akun['role'],
                     'id_smt' => $this->semester_aktif->id_smt,
+                    'nm_smt' => $this->semester_aktif->nm_smt,
                     'logged_in' => true
                 ]);
                 // respon berhasil login
