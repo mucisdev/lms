@@ -65,12 +65,12 @@ class GetData extends BaseController
 			// kode_prodi
 			$kode_prodi = $this->request->getVar('kode_prodi');
 			// ambil kelas berdasarkan prodi yg dipilih
-			$kelas = $this->kelas->dataKelasProdi($kode_prodi, $this->semester_aktif->id_smt);
+			$kelas = $this->kelas->dataKelasProdi($kode_prodi, $this->smt_aktif);
 			// pengecekan ketersediaan kelas
 			if ($kelas) :
 				// response yang dikirim
 				$response = response(true, 'Data ditemukan!');
-				$response['overview_prodi'] = $this->prodi->overviewProdi($kode_prodi, $this->semester_aktif->id_smt); // data overview
+				$response['overview_prodi'] = $this->prodi->overviewProdi($kode_prodi, $this->smt_aktif); // data overview
 				$response['field'] = $kelas; // data kelas
 			else :
 				$response = response(false, 'Program studi yang dipilih tidak memiliki kelas.');
@@ -94,7 +94,7 @@ class GetData extends BaseController
 			// semester
 			$smt = $this->request->getVar('smt');
 			// ambil matkul berdasarkan kelas yang dipilih
-			$matkul = $this->matkul->dataMatkulKelas($id_kls, $smt, $this->semester_aktif->id_smt);
+			$matkul = $this->matkul->dataMatkulKelas($id_kls, $smt, $this->smt_aktif);
 			// pengecekan ketersediaan matkul
 			if ($matkul) :
 				// respons yang dikirim
@@ -316,6 +316,30 @@ class GetData extends BaseController
 			} else {
 				$response = response(false, 'Komentar gagal dihapus!');
 			}
+		} else {
+			$response = response(false, 'Tidak ada data yang diterima!');
+		}
+
+		// kirim nilai csrf yang terbaru
+		$response['csrf_token'] = csrf_hash();
+		// return $response dalam bentuk json
+		return $this->response->setJSON($response);
+	}
+
+	public function ganti_semester()
+	{
+		if ($this->request->getVar()) {
+			$id_smt = $this->request->getVar('id_smt');
+			// hapus session smt yang sebelumnya
+			session()->remove(['id_smt', 'nm_smt']);
+			// ambil data smt berdasarkan id_smt baru
+			$smt = $this->semester->find($id_smt);
+			session()->set([
+				'id_smt' => $smt['id_smt'],
+				'nm_smt' => $smt['nm_smt'],
+			]);
+			// respon berhasil
+			$response = response(true, 'Semester berhasil diubah!');
 		} else {
 			$response = response(false, 'Tidak ada data yang diterima!');
 		}
