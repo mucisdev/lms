@@ -181,6 +181,37 @@ function format_tanggal(tgl_asal, ket = 'f'){
     return format_tgl;
 }
 
+// ganti semester
+function gantiSmt(){
+    const id_smt = document.getElementById('id_smt').value;
+    const csrf_token = document.getElementById('csrf_token').value;
+    const myData = { id_smt: id_smt, csrf_token_name: csrf_token };
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(myData)
+    };
+    try {
+        // kirim data (method POST)
+        const url = site_url + "getdata/ganti_semester";
+        fetch(url, options)
+        .then((result) => result.json())
+        .then((response) => {
+            const data = response;
+            // notif
+            notif(data.message, data.type);
+            // set csrf
+            document.getElementById("csrf_token").value = data.csrf_token;
+        });
+    } catch (error) {
+        // proses login gagal
+        console.log(error);
+        notif(error, 'danger');
+    }
+}
+
 // notif
 function notif(pesan, tipe, timer = 5000) {
     const message = pesan;
