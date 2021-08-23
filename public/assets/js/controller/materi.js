@@ -23,7 +23,6 @@ async function materi() {
                 </div>
             
                 <div class="col-md-auto col-sm-12 ms-auto text-md-end mt-n1">
-            
                     <div class="dropdown d-md-inline-block d-inline">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 my-2">
@@ -75,20 +74,32 @@ async function materi() {
                         </div>
                         <div class="card-body">
                             <ol class="list-group list-group-flush">`;
-                    const result_materi = json.materi;
-                    if(result_materi.length) {
-                        result_materi.forEach((data) =>  {
-                            let file_type = (data.file) ? checkFileExtension(data.file) : '';
-                            if (data.link) {
-                                html += `<li class="list-group-item list-group-item-action d-flex align-items-center"><div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>${data.judul.toUpperCase()}</li>`;
-                            } else {
-                                html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}" class="list-group-item list-group-item-action fw-bold text-primary d-flex align-items-center"><div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>${data.judul.toUpperCase()}</a>`;
+                            const result_materi = json.materi;
+                            if(result_materi.length) {
+                                result_materi.forEach((data) =>  {
+                                    let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                                    if (data.link) {
+                                        html += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>
+                                            <div class="me-auto">
+                                                <div class="fw-bold">${data.judul.toUpperCase()}</div>
+                                                <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                            </div>
+                                        </li>`;
+                                    } else {
+                                        html += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>
+                                            <div class="me-auto">
+                                                <div class="fw-bold"><a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a></div>
+                                                <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                            </div>
+                                        </li>`;
+                                    }
+                                });
+                            }else{
+                                html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
                             }
-                        });
-                    }else{
-                        html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
-                    }
-                    html+= `</ol>
+                            html+= `</ol>
                         </div>
                     </div>
                 </div>
