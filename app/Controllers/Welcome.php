@@ -41,4 +41,14 @@ class Welcome extends BaseController
 		];
 		return view('welcome/modul_matkul', $data);
 	}
+
+	public function semester()
+	{
+		$smt = $this->semester->getWhere(['a_periode_aktif' => 1])->getResultArray();
+		$data = [
+			'title' => 'Semester',
+			'semester' => $smt,
+		];
+		return view('welcome/semester', $data);
+	}
 }
