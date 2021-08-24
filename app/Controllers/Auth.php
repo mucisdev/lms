@@ -25,6 +25,8 @@ class Auth extends BaseController
         // data yang diterima
         $username = trim($this->request->getPost('username'));
         $password = trim($this->request->getPost('password'));
+        $url_referrer  = trim($this->request->getPost('url_referrer'));
+        $redirect_to = ($url_referrer) ? $url_referrer : site_url('welcome');
 
         // ambil data user berdasarkan username
         $dataUser = $this->auth->getUserDumy($username);
@@ -67,6 +69,7 @@ class Auth extends BaseController
                 // kirim level akun
                 // untuk mengatur arah redirect
                 $response['role'] = $dataUser['role'];
+                $response['redirect_to'] = $redirect_to;
             } else {
                 // respon password salah
                 $response = response(false, 'Password salah!');
@@ -85,6 +88,10 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(site_url('welcome'));
+        // respon berhasil logout
+        $response = response(true, 'Berhasil logout!');
+        // return redirect()->to(site_url('welcome'));
+        // return $response dalam bentuk json
+        return $this->response->setJSON($response);
     }
 }
