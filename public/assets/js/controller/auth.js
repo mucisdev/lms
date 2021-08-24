@@ -21,7 +21,7 @@ async function sendData(value) {
             btnSubmit.disabled = true;
             // jika status true, alihkan ke home
             notif(json.message, json.type);
-            location.href = site_url;
+            location.href = json.redirect_to;
             // periksa level
             // if (json.role == 'Mahasiswa') {
             //     location.href = site_url + 'pelajar';
