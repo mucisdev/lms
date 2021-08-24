@@ -35,7 +35,7 @@ $routes->get('/', 'Welcome::index');
 $routes->get('/auth/login', 'Auth::index');
 $routes->get('/getdata', 'Auth::index');
 $routes->get('/getdata/(:any)', 'Auth::index');
-$routes->get('/welcome/semester', 'Auth::index');
+$routes->get('/welcome/semester', 'Welcome::semester', ['filter' => 'cek_login']);
 $routes->get('/welcome/kelas', 'Welcome::index');
 $routes->get('/welcome/matkul', 'Welcome::index');
 $routes->get('/welcome/modul', 'Welcome::index');
