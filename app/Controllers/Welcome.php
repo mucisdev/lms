@@ -32,12 +32,13 @@ class Welcome extends BaseController
 		return view('welcome/matkul_prodi', $data);
 	}
 
-	public function modul($id_kls = null, $id_mk = null)
+	public function modul($id_kls = null, $id_mk = null, $smt = null)
 	{
 		$data = [
 			'title' => 'Materi',
 			'id_kls' => $id_kls,
 			'id_mk' => $id_mk,
+			'smt' => $smt,
 		];
 		return view('welcome/modul_matkul', $data);
 	}
