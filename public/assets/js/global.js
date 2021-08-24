@@ -212,6 +212,12 @@ function gantiSmt(){
     }
 }
 
+// proses logout
+async function logout(thisURL){
+    await fetch(site_url + 'auth/logout');
+    location.href = thisURL;
+}
+
 // notif
 function notif(pesan, tipe, timer = 5000) {
     const message = pesan;
