@@ -20,6 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <input class="form-control required" type="password" name="password" id="my_password" placeholder="Password" required />
+                    <input type="hidden" name="url_referrer" id="url_referrer" value="<?= @$_SERVER['HTTP_REFERER']; ?>" />
                 </div>
                 <div>
                     <div class="form-check align-items-center">
