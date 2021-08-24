@@ -91,6 +91,6 @@ defined('S3_ACCESS_KEY') or define('S3_ACCESS_KEY', '69e2d63e543b705e3f1e');
 // Author
 define('DEV', 'TIM IT MUCIS');
 define('CREATED_AT', '2021.08.09');
-define('UPDATED_AT', '2021.08.21');
+define('UPDATED_AT', '2021.08.24');
 define('APP_TITLE', 'Learning Mucis System');
 define('APP_INSTITUSI', 'STIKes Muhammadiyah Ciamis');
