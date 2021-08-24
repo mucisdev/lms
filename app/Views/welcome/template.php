@@ -79,7 +79,7 @@
                                 <span class="me-2 text-dark">|</span>
                             </span>
 
-                            <a class="nav-link d-none d-sm-inline-block text-danger" href="<?= site_url('auth/logout') ?>">Logout</a>
+                            <a class="nav-link d-none d-sm-inline-block text-danger" onclick="logout(`<?= current_url() ?>`)">Logout</a>
                         <?php else : ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link d-inline-block px-5 py-1 text-white btn btn-primary" href="<?= site_url('auth') ?>">Masuk</a>
