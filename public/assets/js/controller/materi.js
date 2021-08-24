@@ -28,7 +28,7 @@ async function materi() {
                             <ol class="breadcrumb mb-0 my-2">
                                 <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="link_to('welcome')">Home</a></li>
                                 <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="link_to('welcome/kelas/${overview.kode_prodi}')">Kelas</a></li>
-                                <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="history.go(-1)">Mata Kuliah</a></li>
+                                <li class="breadcrumb-item"><a role="button" class="text-decoration-none" onclick="link_to('welcome/matkul/${id_kls}/${smt}')">Mata Kuliah</a></li>
                                 <li class="breadcrumb-item active">Materi</li>
                             </ol>
                         </nav>
@@ -59,14 +59,14 @@ async function materi() {
                             </div>
                         </div>
                             <hr>
-                            <a class="btn btn-light" onclick="history.go(-1)"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
+                            <a class="btn btn-light" onclick="link_to('welcome/matkul/${id_kls}/${smt}')"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="row">
-                <div class="col-12 ">
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Daftar Materi</h5>
@@ -102,8 +102,49 @@ async function materi() {
                             html+= `</ol>
                         </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
+                // cek login
+                // jika login, tampilkan tugas
+                if(is_login) {
+                    html += `<div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Daftar Tugas</h5>
+                                <h6 class="card-subtitle text-muted">Klik pada nama tugas untuk mendownload</h6>
+                            </div>
+                            <div class="card-body">
+                                <ol class="list-group list-group-flush">`;
+                                const result_tugas = json.tugas;
+                                if(result_tugas.length) {
+                                    result_tugas.forEach((data) =>  {
+                                        let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                                        if (data.link) {
+                                            html += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                                                <div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>
+                                                <div class="me-auto">
+                                                    <div class="fw-bold">${data.judul.toUpperCase()}</div>
+                                                    <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                </div>
+                                            </li>`;
+                                        } else {
+                                            html += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                                                <div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>
+                                                <div class="me-auto">
+                                                    <div class="fw-bold"><a target="materi_" rel="noreferrer" href="${link_cdn}tugas/${data.file}">${data.judul.toUpperCase()}</a></div>
+                                                    <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                </div>
+                                            </li>`;
+                                        }
+                                    });
+                                }else{
+                                    html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada tugas</li>`;
+                                }
+                                html+= `</ol>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+            html += `</div>`;
         }else{
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>

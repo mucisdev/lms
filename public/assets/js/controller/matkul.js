@@ -66,7 +66,7 @@ async function matkul() {
             </div>
             
             <div class="row">
-                <div class="col-12 col-lg-9">
+                <div class="col">
                     <div class="card">
                         <div class="card-header px-4 pt-4">
                             <h5 class="card-title mb-0">Daftar Mata Kuliah</h5>
@@ -76,7 +76,7 @@ async function matkul() {
             // tampilkan daftar matkul yang ada pada kelas yang dipilih
             const result = json.field;
             result.forEach((data) =>  {
-                html += `<li role="button" onclick="link_to('welcome/modul/${data.id_kls}/${data.id_mk}')" class="list-group-item list-group-item-action d-flex align-items-center">
+                html += `<li role="button" onclick="link_to('welcome/modul/${data.id_kls}/${data.id_mk}/${data.smt}')" class="list-group-item list-group-item-action d-flex align-items-center">
                         <div class="ms-md-2 me-auto">
                             <div class="fw-bold text-primary">${data.nm_mk.toUpperCase()}</div>
                         </div>
@@ -87,34 +87,37 @@ async function matkul() {
                     </div>
                 </div>`;
 
-            // tampilkan data mahasiswa
-            // tampilkan overview kelas berdasarkan kelas
-            html+=`<div class="col-12 col-lg-3">
-                        <div class="card">
-                            <div class="card-header px-4 pt-4">
-                                <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
-                            </div>
-                            <div class="card-body px-0">
-                                <div class="overflow-auto" style="max-height:500px;">
-                                <div class="list-group list-group-flush">`;
-                                const mhsw = json.mahasiswa;
-                                mhsw.forEach((mhs) =>  {
-                                html += `<div class="list-group-item border-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="d-inline-block text-truncate">
-                                                    <div class="stat d-inline-block text-center me-2">
-                                                        <i class="align-middle far fa-fw fa-user"></i>
-                                                    </div> ${mhs.nm_pd}
+            // cek login
+            if(is_login){
+                // tampilkan data mahasiswa
+                // tampilkan overview kelas berdasarkan kelas
+                html+=`<div class="col col-3">
+                            <div class="card">
+                                <div class="card-header px-4 pt-4">
+                                    <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
+                                </div>
+                                <div class="card-body px-0">
+                                    <div class="overflow-auto" style="max-height:500px;">
+                                    <div class="list-group list-group-flush">`;
+                                    const mhsw = json.mahasiswa;
+                                    mhsw.forEach((mhs) =>  {
+                                    html += `<div class="list-group-item border-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-inline-block text-truncate">
+                                                        <div class="stat d-inline-block text-center me-2">
+                                                            <i class="align-middle far fa-fw fa-user"></i>
+                                                        </div> ${mhs.nm_pd}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>`;
-                                    });
-                        html += `</div>
+                                            </div>`;
+                                        });
+                            html += `</div>
+                                </div>
                             </div>
+                    
                         </div>
-                
-                    </div>
-            </div>`;
+                </div>`;
+            }
         }else{
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
