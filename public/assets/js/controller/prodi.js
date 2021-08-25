@@ -15,23 +15,29 @@ async function prodi() {
         const json = await response.json();
         let html = '';
         if(json.status){
-            const result = json.field;
-            result.forEach((data) =>  {
-                html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
-                <div class="card flex-fill bg-primary" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
-                    <div class="card-body py-4">
-                        <div class="d-flex align-items-start">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-2 text-white">${data.jenjang} ${data.nm_prodi}</h3>
-                                <div class="mb-0">
-                                    <span class="text-light"><em>${data.nm_prodi_e}</em></span>
+            const result = json.prodi;
+            if(result.length){
+                result.forEach((data) =>  {
+                    html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
+                    <div class="card flex-fill bg-primary-dark" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
+                        <div class="card-body py-4">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1">
+                                    <h3 class="mb-2 text-white">${data.jenjang} ${data.nm_prodi}</h3>
+                                    <div class="mb-0">
+                                        <span class="text-light"><em>${data.nm_prodi_e}</em></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>`;
+                });
+            } else {
+                html += `<div class="col-12 mx-auto pt-5 text-center">
+                <h1 class="text-center mb-5">Tidak ada Program Studi!</h1>
             </div>`;
-            });
+            }
         }else{
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
