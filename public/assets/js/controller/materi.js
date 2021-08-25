@@ -38,7 +38,7 @@ async function materi() {
             
             <div class="row">
                 <div class="col-12">
-                    <div class="card" style="background-color: #3367d5;">
+                    <div class="card bg-primary-dark">
                         <div class="card-body py-4">
                         <div class="d-md-flex align-items-center justify-content-between">
                             <div>
@@ -83,7 +83,7 @@ async function materi() {
                                             <div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>
                                             <div class="me-auto">
                                                 <div class="fw-bold">${data.judul.toUpperCase()}</div>
-                                                <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                             </div>
                                         </li>`;
                                     } else {
@@ -91,7 +91,7 @@ async function materi() {
                                             <div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>
                                             <div class="me-auto">
                                                 <div class="fw-bold"><a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a></div>
-                                                <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                             </div>
                                         </li>`;
                                     }
@@ -106,7 +106,7 @@ async function materi() {
                 // cek login
                 // jika login, tampilkan tugas
                 if(is_login) {
-                    html += `<div class="col">
+                    html += `<div class="col col-lg-6 col-sm-12">
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">Daftar Tugas</h5>
@@ -123,15 +123,21 @@ async function materi() {
                                                 <div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>
                                                 <div class="me-auto">
                                                     <div class="fw-bold">${data.judul.toUpperCase()}</div>
-                                                    <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                    <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                 </div>
                                             </li>`;
                                         } else {
                                             html += `<li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="stat d-inline-block text-center me-3">${iconFileType(file_type)}</div>
                                                 <div class="me-auto">
-                                                    <div class="fw-bold"><a target="materi_" rel="noreferrer" href="${link_cdn}tugas/${data.file}">${data.judul.toUpperCase()}</a></div>
-                                                    <small class="text-muted">${format_tanggal(data.create_at)}</small>
+                                                    <div class="fw-bold">`;
+                                                    if(data.file){
+                                                        html += `<a target="materi_" rel="noreferrer" href="${link_cdn}tugas/${data.file}">${data.judul.toUpperCase()}</a>`;
+                                                    }else{
+                                                        html += `${data.judul.toUpperCase()}`;
+                                                    }
+                                                    html += `</div>
+                                                    <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                 </div>
                                             </li>`;
                                         }
