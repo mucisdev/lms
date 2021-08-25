@@ -41,13 +41,8 @@ class GetData extends BaseController
 		if ($this->request->getVar()) {
 			// ambil data prodi
 			$prodi = $this->prodi->findAll();
-			// pengecekan prodi
-			if ($prodi) :
-				$response = response(true, 'Data ditemukan!');
-				$response['field'] = $prodi; // data prodi
-			else :
-				$response = response(false, 'Tidak ada Program Studi!');
-			endif;
+			$response = response(true, 'Data ditemukan!');
+			$response['prodi'] = $prodi; // data prodi
 		} else {
 			$response = response(false, 'Tidak ada data yang diterima!');
 		}
@@ -66,15 +61,10 @@ class GetData extends BaseController
 			$kode_prodi = $this->request->getVar('kode_prodi');
 			// ambil kelas berdasarkan prodi yg dipilih
 			$kelas = $this->kelas->dataKelasProdi($kode_prodi, $this->smt_aktif);
-			// pengecekan ketersediaan kelas
-			if ($kelas) :
-				// response yang dikirim
-				$response = response(true, 'Data ditemukan!');
-				$response['overview_prodi'] = $this->prodi->overviewProdi($kode_prodi, $this->smt_aktif); // data overview
-				$response['field'] = $kelas; // data kelas
-			else :
-				$response = response(false, 'Program studi yang dipilih tidak memiliki kelas.');
-			endif;
+			// response yang dikirim
+			$response = response(true, 'Data ditemukan!');
+			$response['overview_prodi'] = $this->prodi->overviewProdi($kode_prodi, $this->smt_aktif); // data overview
+			$response['kelas'] = $kelas; // data kelas
 		} else {
 			$response = response(false, 'Tidak ada data yang diterima!');
 		}
@@ -95,16 +85,11 @@ class GetData extends BaseController
 			$smt = $this->request->getVar('smt');
 			// ambil matkul berdasarkan kelas yang dipilih
 			$matkul = $this->matkul->dataMatkulKelas($id_kls, $smt, $this->smt_aktif);
-			// pengecekan ketersediaan matkul
-			if ($matkul) :
-				// respons yang dikirim
-				$response = response(true, 'Data ditemukan!');
-				$response['overview_kelas'] = $this->kelas->overviewKelas($id_kls);
-				$response['mahasiswa'] = $this->mahasiswa->dataMahasiswaKelas($id_kls);
-				$response['field'] = $matkul; // data matkul
-			else :
-				$response = response(false, 'Tidak ada mata kuliah pada kelas ini!');
-			endif;
+			// respons yang dikirim
+			$response = response(true, 'Data ditemukan!');
+			$response['overview_kelas'] = $this->kelas->overviewKelas($id_kls);
+			$response['mahasiswa'] = $this->mahasiswa->dataMahasiswaKelas($id_kls);
+			$response['matkul'] = $matkul; // data matkul
 		} else {
 			$response = response(false, 'Tidak ada data yang diterima!');
 		}
