@@ -17,7 +17,7 @@
                 </select>
                 <label for="id_smt">Pilih Tahun Akademik</label>
             </div>
-            <a class="btn btn-primary" role="button" onclick="history.go(-1)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali ke Home</a>
+            <a class="btn btn-primary" role="button" onclick="link_to(`welcome`)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali ke Home</a>
         <?php else : ?>
             <h1 class="text-center mb-5">Tidak ada data semester</h1>
             <a class="btn btn-primary" role="button" onclick="link_to(`welcome`)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali ke Home</a>
