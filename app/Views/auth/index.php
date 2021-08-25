@@ -2,7 +2,7 @@
 <?= $this->section('content'); ?>
 
 <div class="row m-0 p-0">
-    <div class="col-sm-8 col-md-6 col-lg-4 mx-auto p-0 pt-md-4">
+    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-3 mx-auto p-0 pt-md-4">
         <div class="m-0 m-md-4">
             <div class="text-center mb-4">
                 <div class="text-center mb-4">
