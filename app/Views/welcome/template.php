@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, width=device-width, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="<?= APP_TITLE ?>">
     <meta name="author" content="<?= DEV ?>">
     <meta name="google" value="notranslate">
     <meta name="theme-color" content="#3699ff">
@@ -21,6 +21,8 @@
 
     <link rel="canonical" href="<?= current_url() ?>" />
     <link rel="shortcut icon" href="/assets/img/icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="96x96" href="/assets/img/icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
