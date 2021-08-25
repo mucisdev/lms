@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, width=device-width, shrink-to-fit=no">
-    <meta name="description" content="<?= APP_TITLE ?>">
+    <meta name="description" content="eLearning Mucis">
     <meta name="author" content="<?= DEV ?>">
     <meta name="google" value="notranslate">
     <meta name="theme-color" content="#3699ff">
