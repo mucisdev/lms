@@ -13,6 +13,7 @@
     let link_cdn = '<?= URL_CDN . '/sidos/' ?>';
     let csrf_token = '<?= csrf_hash() ?>';
     let is_login = '<?= session()->get('logged_in') ?>';
+    let halaman = 0;
 </script>
 
 <?= $this->endSection(); ?>
