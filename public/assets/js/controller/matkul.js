@@ -37,7 +37,7 @@ async function matkul() {
             </div>
             
             <div class="row">
-                <div class="col-12">
+                <div class="col">
                     <div class="card bg-primary-dark">
                         <div class="card-body py-4">
                         <div class="d-md-flex align-items-center justify-content-between">
@@ -62,11 +62,7 @@ async function matkul() {
                             <a class="btn btn-light" onclick="link_to('welcome/kelas/${overview.kode_prodi}')"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col">
+                    
                     <div class="card">
                         <div class="card-header px-4 pt-4">
                             <h5 class="card-title mb-0">Daftar Mata Kuliah</h5>
@@ -98,13 +94,13 @@ async function matkul() {
             if(is_login){
                 // tampilkan data mahasiswa
                 // tampilkan overview kelas berdasarkan kelas
-                html+=`<div class="col col-4">
-                        <div class="card">
-                            <div class="card-header px-4 pt-4">
-                                <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
-                            </div>
-                            <div class="card-body px-0">
-                                <div class="overflow-auto" style="max-height:500px;">
+                html+=`<div class="col col-lg-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-header px-4 pt-4">
+                            <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
+                        </div>
+                        <div class="card-body px-0">
+                            <div class="overflow-auto" style="max-height:600px;">
                                 <div class="list-group list-group-flush">`;
                                 const mhsw = json.mahasiswa;
                                 mhsw.forEach((mhs) =>  {
