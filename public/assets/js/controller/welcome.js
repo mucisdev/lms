@@ -11,9 +11,14 @@ if(document.getElementById('load-prodi')){
 }
 
 // ambil data materi
-import { materi } from './materi.js';
+import { materi, informasi } from './materi.js';
 if(document.getElementById('load-materi')){
     window.addEventListener("DOMContentLoadedload", materi());
+    // cek login
+    // jika login, tampilkan tugas
+    if(is_login) {
+        informasi(csrf_token, halaman);
+    }
 }
 
 // ambil data matkul
