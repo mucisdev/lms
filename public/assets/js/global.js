@@ -53,6 +53,19 @@ function iconFileType(ekstensi)
         return '<i class="align-middle fas fa-fw fa-file"></i>';
     }
 }
+
+// strip tag html
+function removeTags(str) {
+    if ((str===null) || (str===''))
+        return '';
+    else
+        str = str.toString();
+          
+    // Regular expression to identify HTML tags in 
+    // the input string. Replacing the identified 
+    // HTML tag with a null string.
+    return str.replace( /(<([^>]+)>)/ig, '');
+}
     
 // menampilkan password
 function show_hide_pass() {
@@ -138,9 +151,9 @@ function format_tanggal(tgl_asal, ket = 'f'){
     let tanggal = date.getDate();
     let bulan = date.getMonth();
     let tahun = date.getFullYear();
-    let jam = date.getHours();
-    let menit = date.getMinutes();
-    let detik = date.getSeconds();
+    let jam   = ('0'+date.getHours()).slice(-2);
+    let menit = ('0'+date.getMinutes()).slice(-2);
+    let detik = ('0'+date.getSeconds()).slice(-2);
 
     // hari
     switch(hari) {
@@ -216,6 +229,26 @@ function gantiSmt(){
 async function logout(thisURL){
     await fetch(site_url + 'auth/logout');
     location.href = thisURL;
+}
+
+// toggle teks yang panjang untuk readmore
+function toggleText(i = null) {
+    let idLongText = $('#longText_'+i);
+    let btnMore = $('#btnMore_'+i);
+    let listKomen = $('.listKomen_'+i);
+    if(idLongText.hasClass('text-truncate')){
+        idLongText.attr('class','text');
+        listKomen.toggle('d-none');
+        btnMore.text('Show Less');         
+    } else {
+        idLongText.attr('class','text-truncate');
+        listKomen.toggle('d-block');
+        btnMore.text('Show More');
+    }
+}
+
+function showForum(){
+    $('#forum').toggle('slow');
 }
 
 // notif
