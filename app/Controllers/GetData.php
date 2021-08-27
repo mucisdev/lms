@@ -113,7 +113,7 @@ class GetData extends BaseController
 			// ambil tugas berdasarkan kelas dan matkul
 			$list_tugas = $this->matkul->listTugasMatkul($id_kls, $id_mk);
 			$response = response(true, 'Data ditemukan!');
-			$response['overview_matkul'] = $this->matkul->overviewMatkul($id_mk);
+			$response['overview_matkul'] = $this->matkul->overviewMatkul($id_mk, $id_kls);
 			$response['materi'] = $list_materi; // data materi
 			$response['tugas'] = $list_tugas; // data tugas
 		} else {
