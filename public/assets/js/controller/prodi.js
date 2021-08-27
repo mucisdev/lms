@@ -19,7 +19,7 @@ async function prodi() {
             if(result.length){
                 result.forEach((data) =>  {
                     html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
-                    <div class="card flex-fill bg-primary-dark" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
+                    <div class="card flex-fill bg-primary" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
                         <div class="card-body py-4">
                             <div class="d-flex align-items-start">
                                 <div class="flex-grow-1">
