@@ -7,7 +7,7 @@
         <div class="mb-0 rounded-3 text-center">
             <p class="fs-4"><?= APP_INSTITUSI ?></p>
             <h1 class="fw-bold display-6"><?= strtoupper(APP_TITLE) ?></h1>
-            <p class="fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap.</p>
+            <!-- <p class="fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap.</p> -->
         </div>
     </div>
 </div>
