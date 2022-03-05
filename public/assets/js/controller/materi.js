@@ -97,7 +97,12 @@ async function materi() {
                                                         <div class="me-auto">
                                                             <div class="fw-bold">`;
                             if (data.file) {
-                                html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a>`;
+                                // jika login, beri akses download
+                                if (is_login) {
+                                    html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a>`;
+                                } else {
+                                    html += `<span>${data.judul.toUpperCase()}</span>`;
+                                }
                             } else {
                                 html += `${data.judul.toUpperCase()}`;
                             }
