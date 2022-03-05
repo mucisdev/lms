@@ -47,8 +47,8 @@
     <div class="fixed-bottom p-3 bg-success text-white text-center" style="display: none;" id="online">Terhubung ke internet.</div>
 
     <script src="https://cdn.jsdelivr.net/gh/wahyuos/style@73a1c411859ef15d22588da44581af53aa5a94f4/js/app.js" defer></script>
-    <script src="/assets/js/global.js?v=<?= UPDATED_AT ?>" defer></script>
-    <script src="/assets/js/controller/auth.js?v=<?= UPDATED_AT ?>" defer></script>
+    <script src="/assets/js/global.js?v=<?= BUILD ?>" defer></script>
+    <script src="/assets/js/controller/auth.js?v=<?= BUILD ?>" defer></script>
 </body>
 
 </html>

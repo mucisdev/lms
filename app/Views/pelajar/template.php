@@ -108,13 +108,13 @@
 
     <script src="https://cdn.jsdelivr.net/gh/wahyuos/style@73a1c411859ef15d22588da44581af53aa5a94f4/js/app.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/wahyuos/style@73a1c411859ef15d22588da44581af53aa5a94f4/js/sweetalert2.min.js" defer></script>
-    <script src="/assets/js/global.js?v=<?= UPDATED_AT ?>" defer></script>
+    <script src="/assets/js/global.js?v=<?= BUILD ?>" defer></script>
 
     <?php
     // load js by class name
     $file = './assets/js/controller/pelajar/' . controller_name() . '.js';
     if (file_exists($file)) {
-        echo '<script src="/assets/js/controller/pelajar/' . controller_name() . '.js?v=' . UPDATED_AT . '" defer></script>';
+        echo '<script src="/assets/js/controller/pelajar/' . controller_name() . '.js?v=' . BUILD . '" defer></script>';
     };
     ?>
 
