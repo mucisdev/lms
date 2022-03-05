@@ -93,7 +93,7 @@ define('DEV', 'TIM IT MUCIS');
 define('CREATED_AT', '2021.08.09');
 define('UPDATED_AT', '2022.03.05');
 define('VERSION', 'v1.2.0');
-define('BUILD', '220305');
+define('BUILD', '220305.1');
 
 define('APP_TITLE', '<span style="color:#1659c7">Mucis</span> Learning System');
 define('APP_INSTITUSI', 'STIKes Muhammadiyah Ciamis');
