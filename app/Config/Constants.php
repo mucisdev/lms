@@ -92,7 +92,7 @@ defined('S3_ACCESS_KEY') or define('S3_ACCESS_KEY', '69e2d63e543b705e3f1e');
 define('DEV', 'TIM IT MUCIS');
 define('CREATED_AT', '2021.08.09');
 define('UPDATED_AT', '2022.03.05');
-define('VERSION', 'v1.2.0');
+define('VERSION', '1.2.0');
 define('BUILD', '220305.2');
 
 define('APP_TITLE', '<span style="color:#1659c7">Mucis</span> Learning System');
