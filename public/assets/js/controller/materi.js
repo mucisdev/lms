@@ -11,7 +11,7 @@ async function materi() {
         // tampilkan loader
         document.getElementById('load-materi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url + 'GetData/get_materi/', options);
+        const response = await fetch(site_url + 'GetData/get_materi', options);
         const json = await response.json();
         let html = '';
         if (json.status) {
@@ -213,7 +213,7 @@ async function informasi(csrf, hal) {
     };
     try {
         // kirim data (method POST)
-        const response = await fetch(site_url + 'GetData/get_info/', options);
+        const response = await fetch(site_url + 'GetData/get_info', options);
         const json = await response.json();
         let html = '';
         if (json.status) {
@@ -272,7 +272,7 @@ async function get_komentar(id_informasi, csrf) {
     };
     try {
         // kirim data (method POST)
-        const response = await fetch(site_url + 'GetData/get_komentar/', options);
+        const response = await fetch(site_url + 'GetData/get_komentar', options);
         const json = await response.json();
         let komentar = '';
         if (json.status) {

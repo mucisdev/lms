@@ -11,7 +11,7 @@ async function prodi() {
         // tampilkan loader
         document.getElementById('load-prodi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url + 'GetData/get_prodi/', options);
+        const response = await fetch(site_url + 'GetData/get_prodi', options);
         const json = await response.json();
         let html = '';
         if (json.status) {
