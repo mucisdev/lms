@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-12 text-center">
-            <p class="text-muted">VERSI <?= UPDATED_AT ?><br>&copy; 2021 - <?= DEV ?></p>
+            <p class="text-muted">VERSI <?= VERSION ?><br>&copy; <?= date('Y') ?> - <?= DEV ?></p>
         </div>
     </div>
 

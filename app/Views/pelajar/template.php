@@ -95,7 +95,7 @@
                     <div class="row text-muted">
                         <div class="col-12 text-center">
                             <p class="mb-0">
-                                &copy; 2021 by <?= DEV ?>
+                                &copy; <?= date('Y') ?> by <?= DEV ?>
                             </p>
                         </div>
                     </div>

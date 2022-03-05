@@ -24,11 +24,11 @@
     </div>
 </div>
 
-<div class="row mb-2 mb-xl-3">
+<!-- <div class="row mb-2 mb-xl-3">
     <div class="col-12 text-center">
         <h3>Materi Terkini</h3>
     </div>
-</div>
+</div> -->
 
 <script>
     let csrf_token = '<?= csrf_hash() ?>';
