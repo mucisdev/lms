@@ -10,17 +10,17 @@
 //     materi();
 // }
 let csrf_new = 0;
-if(document.getElementById('load-matkul')){
+if (document.getElementById('load-matkul')) {
     matkul();
 }
 
-if(document.getElementById('load-materi')){
+if (document.getElementById('load-materi')) {
     materi();
     informasi(csrf_token, halaman);
 }
 
 async function matkul() {
-    const myData = {id_kls:id_kls, smt:smt, csrf_token_name: csrf_token };
+    const myData = { id_kls: id_kls, smt: smt, csrf_token_name: csrf_token };
     const options = {
         method: 'POST',
         headers: {
@@ -32,10 +32,10 @@ async function matkul() {
         // tampilkan loader
         document.getElementById('load-matkul').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_matkul/', options);
+        const response = await fetch(site_url + 'GetData/get_matkul/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview kelas berdasarkan kelas
             const overview = json.overview_kelas;
             html += `            
@@ -76,19 +76,19 @@ async function matkul() {
                             <div class="list-group list-group-flush">`;
             // tampilkan daftar matkul yang ada pada kelas yang dipilih
             const result = json.field;
-            result.forEach((data) =>  {
+            result.forEach((data) => {
                 html += `<li role="button" onclick="link_to('pelajar/modul/${data.id_kls}/${data.id_mk}')" class="list-group-item list-group-item-action d-flex align-items-center px-0">
                         <div class="fw-bold text-primary">${data.nm_mk.toUpperCase()}</div>
                     </li>`;
-                });
-                html += `</div>
+            });
+            html += `</div>
                         </div>
                     </div>
                 </div>`;
 
             // tampilkan data mahasiswa
             // tampilkan overview kelas berdasarkan kelas
-            html+=`<div class="col-12 col-lg-4 col-xl-3">
+            html += `<div class="col-12 col-lg-4 col-xl-3">
                         <div class="card">
                             <div class="card-header px-4 pt-4">
                                 <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
@@ -96,9 +96,9 @@ async function matkul() {
                             <div class="card-body px-0">
                                 <div class="overflow-auto" style="max-height:500px;">
                                 <div class="list-group list-group-flush">`;
-                                const mhsw = json.mahasiswa;
-                                mhsw.forEach((mhs) =>  {
-                                html += `<div class="list-group-item border-0">
+            const mhsw = json.mahasiswa;
+            mhsw.forEach((mhs) => {
+                html += `<div class="list-group-item border-0">
                                             <div class="d-flex align-items-center">
                                                 <div class="d-inline-block text-truncate">
                                                     <div class="stat d-inline-block text-center me-2">
@@ -107,14 +107,14 @@ async function matkul() {
                                                 </div>
                                             </div>
                                         </div>`;
-                                    });
-                        html += `</div>
+            });
+            html += `</div>
                             </div>
                         </div>
                 
                     </div>
             </div>`;
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="history.go(-1)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
@@ -141,10 +141,10 @@ async function materi() {
         // tampilkan loader
         document.getElementById('load-materi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_materi/', options);
+        const response = await fetch(site_url + 'GetData/get_materi/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview matkul berdasarkan matkul
             const overview = json.overview_matkul;
             html += `<div class="row">
@@ -188,42 +188,42 @@ async function materi() {
                                 <h4 class="tab-title">Daftar Materi</h4>
                                 <h6 class="card-subtitle text-muted mb-4">Klik pada nama materi untuk mendownload.</h6>
                                 <ol class="list-group list-group-flush">`;
-                                const result_materi = json.materi;
-                                if(result_materi.length) {
-                                    result_materi.forEach((data) =>  {
-                                        let file_type = (data.file) ? checkFileExtension(data.file) : '';
-                                        if (data.link) {
-                                            html += `<li class="list-group-item list-group-item-action d-flex align-items-center">
+            const result_materi = json.materi;
+            if (result_materi.length) {
+                result_materi.forEach((data) => {
+                    let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                    if (data.link) {
+                        html += `<li class="list-group-item list-group-item-action d-flex align-items-center">
                                                 <div class="stat d-inline-block text-center me-3"><i class="align-middle fas fa-fw fa-link"></i></div>
                                                 ${data.judul.toUpperCase()}
                                             </li>`;
-                                        } else {
-                                            html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}" class="list-group-item list-group-item-action fw-bold text-primary d-flex justify-content-between align-items-center px-0">
+                    } else {
+                        html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}" class="list-group-item list-group-item-action fw-bold text-primary d-flex justify-content-between align-items-center px-0">
                                                 <div class="me-auto">
                                                 ${data.judul.toUpperCase()}
                                                 </div>
                                                 ${iconFileType(file_type)}
                                             </a>`;
-                                        }
-                                    });
-                                }else{
-                                    html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
-                                }
-                        html+= `</ol>
+                    }
+                });
+            } else {
+                html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
+            }
+            html += `</ol>
                             </div>
                             <div class="tab-pane" id="tab-2" role="tabpanel">
                                 <h4 class="tab-title">Daftar Tugas</h4>
                                 <h6 class="card-subtitle text-muted mb-4">Klik pada nama tugas untuk membuka.</h6>
                                 <ol class="list-group list-group-flush">`;
-                                const result_tugas = json.tugas;
-                                if(result_tugas.length) {
-                                    result_tugas.forEach((data) =>  {
-                                        html += `<a class="list-group-item list-group-item-action fw-bold text-primary px-0" onclick="link_to('pelajar/tugas/${data.id_classwork}')">${data.judul.toUpperCase()}</a>`;
-                                    });
-                                }else{
-                                    html += `<li class="list-group-item px-0">Tidak ada tugas</li>`;
-                                }
-                        html+= `</ol>
+            const result_tugas = json.tugas;
+            if (result_tugas.length) {
+                result_tugas.forEach((data) => {
+                    html += `<a class="list-group-item list-group-item-action fw-bold text-primary px-0" onclick="link_to('pelajar/tugas/${data.id_classwork}')">${data.judul.toUpperCase()}</a>`;
+                });
+            } else {
+                html += `<li class="list-group-item px-0">Tidak ada tugas</li>`;
+            }
+            html += `</ol>
                             </div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@ async function materi() {
                     </div>
                 </div>
             </div>`;
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="history.go(-1)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
@@ -268,15 +268,15 @@ async function informasi(csrf, hal) {
     };
     try {
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_info/', options);
+        const response = await fetch(site_url + 'GetData/get_info/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             $('#btnLoad').hide();
             halaman = halaman + 2;
             const result = json.field;
-            if(result.length){
-                result.forEach((data) =>  {
+            if (result.length) {
+                result.forEach((data) => {
                     $('#btnLoad').show();
                     let regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
                     let str = data.informasi;
@@ -307,11 +307,11 @@ async function informasi(csrf, hal) {
                     html += '<button class="btn btn-primary mb-2" id="btnKomen_' + data.id_informasi + '" type="submit" onClick="post_komen(`' + data.id_informasi + '`)">Kirim</button></div></form>';
                     html += '</div></div></div>';
                 });
-            }else {
+            } else {
                 html += '<div class="text-center">Tidak ada diskusi</div>';
             }
             $("#load-diskusi").append(html);
-        }else{
+        } else {
             html += 'Tidak ada diskusi';
             $('#btnLoad').hide();
         }
@@ -325,7 +325,7 @@ async function informasi(csrf, hal) {
 
 function get_komentar(id_informasi, csrf) {
     $.ajax({
-        url: site_url + 'getdata/get_komentar',
+        url: site_url + 'GetData/get_komentar',
         type: "post",
         data: {
             id_informasi: id_informasi,
@@ -334,7 +334,7 @@ function get_komentar(id_informasi, csrf) {
         },
         dataType: 'json',
         success: function (results) {
-            let komentar= '';
+            let komentar = '';
             const result = results.field;
             $.each(result, function (n, komen) {
                 let regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
@@ -348,8 +348,8 @@ function get_komentar(id_informasi, csrf) {
                 komentar += '<small class="time text-muted float-end"> ' + komen.time_stamp + '</small></div>';
                 if (komen.id_akun == id_akunmhs) {
                     komentar += '<form id="form-del-komen_' + komen.id_komentar + '">';
-                    komentar += '<input type="hidden" class="csrf_del_komen" name="csrf_token_name" value="'+results.csrf_token+'">';
-                    komentar += '<input type="hidden" name="id_komentar" value="'+komen.id_komentar+'">';
+                    komentar += '<input type="hidden" class="csrf_del_komen" name="csrf_token_name" value="' + results.csrf_token + '">';
+                    komentar += '<input type="hidden" name="id_komentar" value="' + komen.id_komentar + '">';
                     komentar += '<button type="submit" data-toggle="tooltip" data-placement="top" title="Hapus Komentar" onclick="hapus_komentar(`' + komen.id_komentar + '`, `' + id_informasi + '`)" class="btn btn-sm ms-3 link-hapus float-end"><i class="fas fa-times text-danger"></i></button>';
                     komentar += '</form>';
                 }
@@ -375,7 +375,7 @@ function post_komen(id_informasi) {
         let komen = new FormData(this);
         let btnKomen = document.getElementById('btnKomen_' + id_informasi);
         $.ajax({
-            url: site_url + 'getdata/post_komentar',
+            url: site_url + 'GetData/post_komentar',
             type: "post",
             data: komen,
             contentType: false,
@@ -400,7 +400,7 @@ function post_komen(id_informasi) {
 }
 
 function hapus_komentar(id_komentar, id_informasi) {
-    document.getElementById('form-del-komen_'+id_komentar).addEventListener('submit', function (event) {
+    document.getElementById('form-del-komen_' + id_komentar).addEventListener('submit', function (event) {
         event.preventDefault();
         const myData = new FormData(this);
         const options = {
@@ -408,7 +408,7 @@ function hapus_komentar(id_komentar, id_informasi) {
             body: myData
         };
         try {
-            const URL = site_url + "getdata/delete_komentar";
+            const URL = site_url + "GetData/delete_komentar";
             fetch(URL, options)
                 .then((response) => response.json())
                 .then((result) => {
@@ -427,8 +427,8 @@ function hapus_komentar(id_komentar, id_informasi) {
     });
 }
 
-function detail_tugas(){
-    const myData = {id_kls:id_kls, smt:smt, csrf_token_name: csrf_token };
+function detail_tugas() {
+    const myData = { id_kls: id_kls, smt: smt, csrf_token_name: csrf_token };
     const options = {
         method: 'POST',
         headers: {
@@ -440,10 +440,10 @@ function detail_tugas(){
         // tampilkan loader
         document.getElementById('load-kelas').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_kelas/', options);
+        const response = await fetch(site_url + 'GetData/get_kelas/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview prodi berdasarkan kode_prodi
             const tugas = json.tugas_detail;
             overview += `<div class="row mb-3 mb-xl-3">
@@ -511,7 +511,7 @@ function detail_tugas(){
 
             // tampilkan daftar kelas yang ada pada prodi yang dipilih
             const result = json.field;
-            result.forEach((data) =>  {
+            result.forEach((data) => {
                 html += `
                 <div class="col-md-6 col-xxl-3 d-flex">
                 <div class="card flex-fill">
@@ -534,7 +534,7 @@ function detail_tugas(){
             </div>`;
             });
             html += `</div>`;
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="history.go(-1)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>

@@ -11,13 +11,13 @@ async function prodi() {
         // tampilkan loader
         document.getElementById('load-prodi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_prodi/', options);
+        const response = await fetch(site_url + 'GetData/get_prodi/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             const result = json.prodi;
-            if(result.length){
-                result.forEach((data) =>  {
+            if (result.length) {
+                result.forEach((data) => {
                     html += `<div class="col-sm-6 col-xl-4 col-xxl-3 d-flex">
                     <div class="card flex-fill bg-primary" role="button" onclick="link_to('welcome/kelas/${data.kode_prodi}')" style="background-image: url('${site_url}assets/img/bg-prodi.jpg');background-size:cover;min-height:100px;">
                         <div class="card-body py-4">
@@ -38,7 +38,7 @@ async function prodi() {
                 <h1 class="text-center mb-5">Tidak ada Program Studi!</h1>
             </div>`;
             }
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
             </div>`;
@@ -51,4 +51,4 @@ async function prodi() {
     }
 }
 
-export{prodi};
+export { prodi };

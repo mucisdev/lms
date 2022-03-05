@@ -11,14 +11,14 @@ async function materi() {
         // tampilkan loader
         document.getElementById('load-materi').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_materi/', options);
+        const response = await fetch(site_url + 'GetData/get_materi/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview matkul berdasarkan matkul
             const overview = json.overview_matkul;
             // pengecekan mata kuliah
-            if(overview){
+            if (overview) {
                 html += `<div class="row mb-3 mb-xl-3">
                     <div class="col-md-auto">
                         <h3>${title}</h3>
@@ -62,12 +62,12 @@ async function materi() {
                                 </div>
                                 <hr>
                                 <a class="btn btn-light me-2" onclick="link_to('welcome/matkul/${id_kls}/${smt}')"><i class="align-middle fas fa-fw fa-arrow-left"></i> KEMBALI</a>`;
-                                // cek login
-                                // jika login, tampilkan tugas
-                                if(is_login) {
-                                    html += `<a class="btn btn-primary me-2" onclick="showForum()"><i class="align-middle fas fa-fw fa-comments"></i> FORUM</a>`;
-                                }
-                            html += `</div>
+                // cek login
+                // jika login, tampilkan tugas
+                if (is_login) {
+                    html += `<a class="btn btn-primary me-2" onclick="showForum()"><i class="align-middle fas fa-fw fa-comments"></i> FORUM</a>`;
+                }
+                html += `</div>
                         </div>
                         
                         <div class="row">
@@ -79,45 +79,45 @@ async function materi() {
                                     </div>
                                     <div class="card-body">
                                         <ol class="list-group list-group-flush">`;
-                                        const result_materi = json.materi;
-                                        if(result_materi.length) {
-                                            result_materi.forEach((data) =>  {
-                                                let file_type = (data.file) ? checkFileExtension(data.file) : '';
-                                                if (data.link) {
-                                                    html += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                const result_materi = json.materi;
+                if (result_materi.length) {
+                    result_materi.forEach((data) => {
+                        let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                        if (data.link) {
+                            html += `<li class="list-group-item d-flex justify-content-between align-items-start">
                                                         <div class="stat d-inline-block text-center me-3" style="min-width:48px"><i class="align-middle fas fa-fw fa-link"></i></div>
                                                         <div class="me-auto">
                                                             <div class="fw-bold">${data.judul.toUpperCase()}</div>
                                                             <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                         </div>
                                                     </li>`;
-                                                } else {
-                                                    html += `<li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                        } else {
+                            html += `<li class="list-group-item d-flex justify-content-between align-items-start px-0">
                                                         <div class="stat d-inline-block text-center me-3" style="min-width:48px">${iconFileType(file_type)}</div>
                                                         <div class="me-auto">
                                                             <div class="fw-bold">`;
-                                                            if(data.file){
-                                                                html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a>`;
-                                                            }else{
-                                                                html += `${data.judul.toUpperCase()}`;
-                                                            }
-                                                            html += `</div>
+                            if (data.file) {
+                                html += `<a target="materi_" rel="noreferrer" href="${link_cdn}materi/${data.file}">${data.judul.toUpperCase()}</a>`;
+                            } else {
+                                html += `${data.judul.toUpperCase()}`;
+                            }
+                            html += `</div>
                                                             <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                         </div>
                                                     </li>`;
-                                                }
-                                            });
-                                        }else{
-                                            html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
-                                        }
-                                        html+= `</ol>
+                        }
+                    });
+                } else {
+                    html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada materi</li>`;
+                }
+                html += `</ol>
                                     </div>
                                 </div>
                             </div>`;
-                            // cek login
-                            // jika login, tampilkan tugas
-                            if(is_login) {
-                                html += `<div class="col col-xl-6 col-lg-12">
+                // cek login
+                // jika login, tampilkan tugas
+                if (is_login) {
+                    html += `<div class="col col-xl-6 col-lg-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title">Daftar Tugas</h5>
@@ -125,43 +125,43 @@ async function materi() {
                                         </div>
                                         <div class="card-body">
                                             <ol class="list-group list-group-flush">`;
-                                            const result_tugas = json.tugas;
-                                            if(result_tugas.length) {
-                                                result_tugas.forEach((data) =>  {
-                                                    let file_type = (data.file) ? checkFileExtension(data.file) : '';
-                                                    if (data.link) {
-                                                        html += `<li class="list-group-item px-0">
+                    const result_tugas = json.tugas;
+                    if (result_tugas.length) {
+                        result_tugas.forEach((data) => {
+                            let file_type = (data.file) ? checkFileExtension(data.file) : '';
+                            if (data.link) {
+                                html += `<li class="list-group-item px-0">
                                                             <div class="me-auto">
                                                                 <div class="fw-bold"><i class="align-middle fas fa-fw fa-link"></i> ${data.judul.toUpperCase()}</div>
                                                                 <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                                 <div class="mt-2">${removeTags(data.deskripsi)}</div>
                                                             </div>
                                                         </li>`;
-                                                    } else {
-                                                        html += `<li class="list-group-item px-0">
+                            } else {
+                                html += `<li class="list-group-item px-0">
                                                             <div class="me-auto">
                                                                 <div class="fw-bold">${iconFileType(file_type)} `;
-                                                                if(data.file){
-                                                                    html += `<a target="materi_" rel="noreferrer" href="${link_cdn}tugas/${data.file}">${data.judul.toUpperCase()}</a>`;
-                                                                }else{
-                                                                    html += `${data.judul.toUpperCase()}`;
-                                                                }
-                                                                html += `</div>
+                                if (data.file) {
+                                    html += `<a target="materi_" rel="noreferrer" href="${link_cdn}tugas/${data.file}">${data.judul.toUpperCase()}</a>`;
+                                } else {
+                                    html += `${data.judul.toUpperCase()}`;
+                                }
+                                html += `</div>
                                                                 <small class="text-muted">${format_tanggal(data.create_at)} oleh ${data.nm_dosen.toUpperCase()}</small>
                                                                 <div class="mt-2">${data.deskripsi}</div>
                                                             </div>
                                                         </li>`;
-                                                    }
-                                                });
-                                            }else{
-                                                html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada tugas</li>`;
-                                            }
-                                            html+= `</ol>
+                            }
+                        });
+                    } else {
+                        html += `<li class="list-group-item d-flex align-items-center px-0">Tidak ada tugas</li>`;
+                    }
+                    html += `</ol>
                                         </div>
                                     </div>
                                 </div>`;
-                            }
-                        html += `</div>
+                }
+                html += `</div>
                     </div>
                     <div class="col col-lg-3 col-sm-12" style="display:none" id="forum">
                         <div class="card">
@@ -183,7 +183,7 @@ async function materi() {
                 <a class="btn btn-primary" role="button" onclick="history.go(-1)"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
             </div>`;
             }
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="link_to('welcome')"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
@@ -208,15 +208,15 @@ async function informasi(csrf, hal) {
     };
     try {
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_info/', options);
+        const response = await fetch(site_url + 'GetData/get_info/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             $('#btnLoad').hide();
             halaman = halaman + 2;
             const result = json.field;
-            if(result.length){
-                result.forEach((data, no) =>  {
+            if (result.length) {
+                result.forEach((data, no) => {
                     no++;
                     $('#btnLoad').show();
                     let regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
@@ -228,23 +228,23 @@ async function informasi(csrf, hal) {
                     html += '<p class="name font-weight-bold mb-0">' + data.nm_dosen + '</p>';
                     html += '<small class="time text-muted"> ' + data.time_stamp + '</small></div>';
                     html += '<div class="forum-content">';
-                    html += '<div class="text-truncate" id="longText_'+no+'">';
+                    html += '<div class="text-truncate" id="longText_' + no + '">';
                     html += '<p>' + informasi;
                     if (data.file) {
                         html += '<br><a href="' + link_cdn + 'files/' + data.file + '" target="_blank" rel="noreferrer">' + data.file + '  </a>';
                     }
                     html += '</p>';
                     get_komentar(data.id_informasi, json.csrf_token);
-                    html += '<div class="listKomen_'+no+'" style="display:none" id="kom_' + data.id_informasi + '" ></div>';
+                    html += '<div class="listKomen_' + no + '" style="display:none" id="kom_' + data.id_informasi + '" ></div>';
                     html += '</div>';
-                    html += '<a class="small text-primary" role="button" id="btnMore_'+no+'" onclick="toggleText(`'+no+'`)">Show More</a>';
+                    html += '<a class="small text-primary" role="button" id="btnMore_' + no + '" onclick="toggleText(`' + no + '`)">Show More</a>';
                     html += '</div><hr>';
                 });
-            }else {
+            } else {
                 html += '<div class="text-center">Tidak ada diskusi</div>';
             }
             $("#load-diskusi").append(html);
-        }else{
+        } else {
             html += 'Tidak ada diskusi';
             $('#btnLoad').hide();
         }
@@ -267,13 +267,13 @@ async function get_komentar(id_informasi, csrf) {
     };
     try {
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_komentar/', options);
+        const response = await fetch(site_url + 'GetData/get_komentar/', options);
         const json = await response.json();
         let komentar = '';
-        if(json.status){
+        if (json.status) {
             const result = json.field;
-            if(result.length){
-                result.forEach((data) =>  {
+            if (result.length) {
+                result.forEach((data) => {
                     let regex = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
                     let str = data.komentar;
                     let val = regex.exec(str);
@@ -287,11 +287,11 @@ async function get_komentar(id_informasi, csrf) {
                     komentar += '<p class="mb-0">' + deskripsi + '</p></div></div>';
                 });
                 $("#kom_" + id_informasi).html(komentar);
-            }else {
+            } else {
                 komentar = '<div class="text-center">Tidak ada komentar</div>';
             }
-        }else{
-            komentar = '<div class="text-center">'+json.message+'</div>';
+        } else {
+            komentar = '<div class="text-center">' + json.message + '</div>';
         }
     } catch (error) {
         console.log(error);
@@ -301,4 +301,4 @@ async function get_komentar(id_informasi, csrf) {
 
 
 
-export{materi, informasi};
+export { materi, informasi };

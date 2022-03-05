@@ -14,7 +14,7 @@ async function sendData(value) {
     try {
         btnSubmitClick(true, true, 'mengautentikasi...');
         disableForm(true);
-        const response = await fetch(site_url + 'auth/login', options);
+        const response = await fetch(site_url + 'Auth/login', options);
         const json = await response.json();
         console.log(json);
         if (json.status) {

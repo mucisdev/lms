@@ -1,5 +1,5 @@
 async function matkul() {
-    const myData = {id_kls:id_kls, smt:smt, csrf_token_name: csrf_token };
+    const myData = { id_kls: id_kls, smt: smt, csrf_token_name: csrf_token };
     const options = {
         method: 'POST',
         headers: {
@@ -11,10 +11,10 @@ async function matkul() {
         // tampilkan loader
         document.getElementById('load-matkul').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_matkul/', options);
+        const response = await fetch(site_url + 'GetData/get_matkul/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview kelas berdasarkan kelas
             const overview = json.overview_kelas;
             html += `<div class="row mb-3 mb-xl-3">
@@ -68,33 +68,33 @@ async function matkul() {
                             <h5 class="card-title mb-0">Daftar Mata Kuliah</h5>
                         </div>
                         <div class="card-body">`;
-                        // pengecekan matkul
-                        const result_matkul = json.matkul;
-                        if(result_matkul.length) {
-                            html += `<div class="list-group list-group-flush list-group-numbered">`;
-                            // tampilkan daftar matkul yang ada pada kelas yang dipilih
-                            result_matkul.forEach((data) =>  {
-                                html += `<li role="button" onclick="link_to('welcome/modul/${data.id_kls}/${data.id_mk}/${data.smt}')" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+            // pengecekan matkul
+            const result_matkul = json.matkul;
+            if (result_matkul.length) {
+                html += `<div class="list-group list-group-flush list-group-numbered">`;
+                // tampilkan daftar matkul yang ada pada kelas yang dipilih
+                result_matkul.forEach((data) => {
+                    html += `<li role="button" onclick="link_to('welcome/modul/${data.id_kls}/${data.id_mk}/${data.smt}')" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                     <div class="ms-md-2 me-auto">
                                         <div class="fw-bold text-primary">${data.nm_mk.toUpperCase()}</div>
                                         <small class="text-muted"><em>${data.nm_mk_e.toUpperCase()}</em></small>
                                     </div>
                                     <span class="badge bg-primary rounded-pill">${data.sks_mk} SKS</span>
                                 </li>`;
-                            });
-                            html += `</div>`;
-                        } else {
-                            html += `Tidak ada mata kuliah.`;
-                        }
-                        html += `</div>
+                });
+                html += `</div>`;
+            } else {
+                html += `Tidak ada mata kuliah.`;
+            }
+            html += `</div>
                     </div>
                 </div>`;
 
             // cek login
-            if(is_login){
+            if (is_login) {
                 // tampilkan data mahasiswa
                 // tampilkan overview kelas berdasarkan kelas
-                html+=`<div class="col col-lg-4 col-sm-12">
+                html += `<div class="col col-lg-4 col-sm-12">
                     <div class="card">
                         <div class="card-header px-4 pt-4">
                             <h5 class="card-title mb-0">Daftar Mahasiswa</h5>
@@ -102,9 +102,9 @@ async function matkul() {
                         <div class="card-body px-0">
                             <div class="overflow-auto" style="max-height:600px;">
                                 <div class="list-group list-group-flush">`;
-                                const mhsw = json.mahasiswa;
-                                mhsw.forEach((mhs) =>  {
-                                html += `<div class="list-group-item border-0">
+                const mhsw = json.mahasiswa;
+                mhsw.forEach((mhs) => {
+                    html += `<div class="list-group-item border-0">
                                             <div class="d-flex align-items-center">
                                                 <div class="d-inline-block text-truncate">
                                                     <div class="stat d-inline-block text-center me-2">
@@ -113,14 +113,14 @@ async function matkul() {
                                                 </div>
                                             </div>
                                         </div>`;
-                                    });
-                                html += `</div>
+                });
+                html += `</div>
                             </div>
                         </div>
                     </div>
                 </div>`;
             }
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="link_to('welcome')"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
@@ -133,4 +133,4 @@ async function matkul() {
         notif(error, 'danger');
     }
 }
-export{matkul};
+export { matkul };

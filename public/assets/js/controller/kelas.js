@@ -1,5 +1,5 @@
 async function kelas() {
-    const myData = {kode_prodi:kode_prodi, csrf_token_name: csrf_token };
+    const myData = { kode_prodi: kode_prodi, csrf_token_name: csrf_token };
     const options = {
         method: 'POST',
         headers: {
@@ -11,14 +11,14 @@ async function kelas() {
         // tampilkan loader
         document.getElementById('load-kelas').innerHTML = loading_spinner;
         // kirim data (method POST)
-        const response = await fetch(site_url+'getdata/get_kelas/', options);
+        const response = await fetch(site_url + 'GetData/get_kelas/', options);
         const json = await response.json();
         let html = '';
-        if(json.status){
+        if (json.status) {
             // tampilkan overview prodi berdasarkan kode_prodi
             const overview = json.overview_prodi;
             // pengecekan kelas pada prodi
-            if(overview){
+            if (overview) {
                 html += `<div class="row mb-3 mb-xl-3">
                     <div class="col-md-auto">
                         <h3>${title}</h3>
@@ -72,11 +72,11 @@ async function kelas() {
                 
                 <div class="row">`;
 
-                    // tampilkan daftar kelas yang ada pada prodi yang dipilih
-                    const result_kelas = json.kelas;
-                    if(result_kelas.length) {
-                        result_kelas.forEach((data) =>  {
-                            html += `<div class="col-md-6 col-xxl-3 d-flex">
+                // tampilkan daftar kelas yang ada pada prodi yang dipilih
+                const result_kelas = json.kelas;
+                if (result_kelas.length) {
+                    result_kelas.forEach((data) => {
+                        html += `<div class="col-md-6 col-xxl-3 d-flex">
                                 <div class="card flex-fill">
                                     <div class="card-header">
                                         <div class="d-md-flex align-items-center justify-content-between">
@@ -95,10 +95,10 @@ async function kelas() {
                                     </div>
                                 </div>
                             </div>`;
-                        });
-                    } else {
-                        html += `<h1 class="text-center my-5">Tidak ada kelas pada prodi ini.</h1>`;
-                    }
+                    });
+                } else {
+                    html += `<h1 class="text-center my-5">Tidak ada kelas pada prodi ini.</h1>`;
+                }
                 html += `</div>`;
             } else {
                 html += `<div class="col-12 mx-auto pt-5 text-center">
@@ -106,7 +106,7 @@ async function kelas() {
                         <a class="btn btn-primary" role="button" onclick="link_to('welcome')"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
                     </div>`;
             }
-        }else{
+        } else {
             html += `<div class="col-12 mx-auto pt-5 text-center">
                 <h1 class="text-center mb-5">${json.message}</h1>
                 <a class="btn btn-primary" role="button" onclick="link_to('welcome')"><i class="align-middle me-2 fas fa-fw fa-arrow-left"></i> Kembali</a>
@@ -120,4 +120,4 @@ async function kelas() {
     }
 }
 
-export{kelas};
+export { kelas };
